@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Ensemble
 {
     /// <summary>
-    /// Interaction logic for MyPage.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class MyPage : Page
+    public partial class Window1 : Window
     {
-        public MyPage()
+        public Window1()
         {
             InitializeComponent();
         }
