@@ -25,7 +25,33 @@ namespace Ensemble
             InitializeComponent();
         }
 
- 
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            FirstPage firstPage = new FirstPage();
+            //this will open your child window
+            firstPage.Show();
+            //this will close parent window. windowOne in this case
+            this.Close();
+        }
 
+        private void LoginEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            TextBox txtBox = sender as TextBox;
+            if (txtBox.Text == "watermark...")
+                txtBox.Text = string.Empty;
+        }
+
+        private void registerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            Window2 twoPage = new Window2();
+            //this will open your child window
+            twoPage.Show();
+            //this will close parent window. windowOne in this case
+            this.Close();
+        }
+
+       
     }
 }
