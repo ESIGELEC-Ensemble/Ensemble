@@ -68,7 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CustomControl1.cs" />
-    <Compile Include="Model\DBManager.cs" />
+    <Compile Include="Controller\DBManager.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

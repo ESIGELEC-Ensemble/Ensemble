@@ -25,6 +25,22 @@ namespace Ensemble
             InitializeComponent();
         }
 
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            string email = loginEmail.Text;
+            string password = loginPassword.Password;
+            DBManager.login(email, password);
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name = registerName.Text;
+            string email = registerEmail.Text;
+            string password = registerPassword.Password;
+            string photoURL = "";
+            DBManager.register(email, name, password, photoURL);
+        }
+
  
 
     }
