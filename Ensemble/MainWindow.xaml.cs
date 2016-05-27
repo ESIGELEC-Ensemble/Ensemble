@@ -27,21 +27,31 @@ namespace Ensemble
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string email = loginEmail.Text;
-            string password = loginPassword.Password;
-            DBManager.login(email, password);
+            FirstPage firstPage = new FirstPage();
+            //this will open your child window
+            firstPage.Show();
+            //this will close parent window. windowOne in this case
+            this.Close();
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void LoginEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string name = registerName.Text;
-            string email = registerEmail.Text;
-            string password = registerPassword.Password;
-            string photoURL = "";
-            DBManager.register(email, name, password, photoURL);
+
+            TextBox txtBox = sender as TextBox;
+            if (txtBox.Text == "watermark...")
+                txtBox.Text = string.Empty;
         }
 
- 
+        private void registerButton_Click(object sender, RoutedEventArgs e)
+        {
 
+            Window2 twoPage = new Window2();
+            //this will open your child window
+            twoPage.Show();
+            //this will close parent window. windowOne in this case
+            this.Close();
+        }
+
+       
     }
 }

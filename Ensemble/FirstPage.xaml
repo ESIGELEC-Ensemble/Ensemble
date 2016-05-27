@@ -1,0 +1,152 @@
+﻿<Window x:Class="Ensemble.FirstPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FirstPage" Height="650" Width="900">
+
+    <!--top panel-->
+    <DockPanel LastChildFill="True">
+        <Grid Height="58" Background="YellowGreen" DockPanel.Dock="Top">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="220" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Left" Margin="20,0,0,10" TextWrapping="Wrap" Text="Ensemble" Foreground="White" FontSize="36"/>
+            <ComboBox x:Name="city" Background="Yellow" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="33" FontSize="16" >
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
+                         FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Rouen"  
+                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Paris"  
+                         FontFamily="Verdana" FontSize="12" FontWeight="Bold"></ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Lille"  
+                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Le havre"  
+                         FontFamily="Verdana" FontSize="12" FontWeight="Bold"></ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Shanghai"  
+                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
+            </ComboBox>
+
+            <ComboBox x:Name="Tag" Background="Yellow" Grid.Column="2"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="34" FontSize="16" >
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Tag"  
+                		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Party"  
+                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Music"  
+                		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Movie"  
+                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Sports"  
+                		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Cook"  
+                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+            </ComboBox>
+
+            <TextBox  Width="162"   Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchTermTextBox" Margin="10,10,0,18" Height="34"/>
+            <TextBlock IsHitTestVisible="False" Text="Enter Search Term Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,17,0,29" Foreground="DarkGray" Grid.Column="3">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SearchTermTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34" Click="Button_Click"/>
+
+            <!--input user's picture from database here-->
+            <Image Source="Images\Sweet-and-happy-friends-together.jpg" Grid.Column="4" HorizontalAlignment="Left" Height="58" Margin="10,4,0,0" VerticalAlignment="Top" Width="85"/>
+
+            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Lilian"  
+            		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Logout"  
+            		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Activity"  
+            		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Friends"  
+            		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="My info"  
+            		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
+            </ComboBox>
+        </Grid>
+
+        <!-- top 2 area-->
+        <Border Height="25"  BorderBrush="Black"  DockPanel.Dock="Top">
+
+        </Border>
+
+        <!--left area-->
+        <Border Width="200"  BorderThickness="1" DockPanel.Dock="Left">
+            <Grid ShowGridLines="True" Margin="0,0,10,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock  Grid.Row="0" Foreground="Orange" FontSize="20" HorizontalAlignment="center" FontWeight="Black" >Friends</TextBlock>
+
+                <!--input 3 users' friends and name from database here-->
+                <Image Grid.Row="1" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center" Height="58" VerticalAlignment="Top" Width="84" />
+                <Label Grid.Row="2" Content="Frank" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="auto"  Width="auto"/>
+
+                <Image Grid.Row="3" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center" Height="58" VerticalAlignment="Top" Width="85" />
+                <Label Grid.Row="4" Content="Li Jing" HorizontalAlignment="Center"  VerticalAlignment="Top"  Height="auto"  Width="auto" />
+
+                <Image Grid.Row="5" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="Center" Height="58" VerticalAlignment="Top" Width="85"/>
+                <Label Grid.Row="6" Content="Huang Run Ping" HorizontalAlignment="Center" VerticalAlignment="Top"   Height="auto"  Width="auto"/>
+                <Canvas HorizontalAlignment="Left" Height="100" Margin="178,31,-78,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="100"/>
+
+            </Grid>
+        </Border>
+
+
+        <!--right area-->
+        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
+            <DockPanel LastChildFill="True">
+                <Border Height="58"  BorderBrush="Black"  DockPanel.Dock="Top">
+                    <Grid Height="58"  DockPanel.Dock="Top">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2"/>
+                        <Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" />
+                    </Grid>
+                </Border>
+       
+                    <Button DockPanel.Dock="Left" Width="50">Left</Button>
+                    <Button DockPanel.Dock="Left" Width="50">Left</Button>
+                    <Button DockPanel.Dock="Right" Width="50">Right</Button>
+                    <Button DockPanel.Dock="Right" Width="50">Right</Button>
+           
+            </DockPanel>
+        </Border>
+
+    </DockPanel>
+</Window>
