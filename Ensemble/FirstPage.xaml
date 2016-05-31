@@ -111,13 +111,13 @@
                 <TextBlock  Grid.Row="0" Foreground="Orange" FontSize="20" HorizontalAlignment="center" FontWeight="Black" >Friends</TextBlock>
 
                 <!--input 3 users' friends and name from database here-->
-                <Image Grid.Row="1" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center" Height="58" VerticalAlignment="Top" Width="84" />
+                <Image Grid.Row="1" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center" VerticalAlignment="Top"  />
                 <Label Grid.Row="2" Content="Frank" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="auto"  Width="auto"/>
 
-                <Image Grid.Row="3" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center" Height="58" VerticalAlignment="Top" Width="85" />
+                <Image Grid.Row="3" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="center"  VerticalAlignment="Top"  />
                 <Label Grid.Row="4" Content="Li Jing" HorizontalAlignment="Center"  VerticalAlignment="Top"  Height="auto"  Width="auto" />
 
-                <Image Grid.Row="5" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="Center" Height="58" VerticalAlignment="Top" Width="85"/>
+                <Image Grid.Row="5" Source="Images\Sweet-and-happy-friends-together.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Label Grid.Row="6" Content="Huang Run Ping" HorizontalAlignment="Center" VerticalAlignment="Top"   Height="auto"  Width="auto"/>
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="178,31,-78,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="100"/>
 
@@ -126,7 +126,7 @@
 
 
         <!--right area-->
-        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
+        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Right">
             <DockPanel LastChildFill="True">
                 <Border Height="58"  BorderBrush="Black"  DockPanel.Dock="Top">
                     <Grid Height="58"  DockPanel.Dock="Top">
@@ -139,12 +139,60 @@
                         <Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" />
                     </Grid>
                 </Border>
-       
-                    <Button DockPanel.Dock="Left" Width="50">Left</Button>
-                    <Button DockPanel.Dock="Left" Width="50">Left</Button>
-                    <Button DockPanel.Dock="Right" Width="50">Right</Button>
-                    <Button DockPanel.Dock="Right" Width="50">Right</Button>
-           
+                <Border Height="476"  BorderBrush="Black"  DockPanel.Dock="Left" Width="116">
+                    <Grid Margin="0,0,0,0" ShowGridLines="True" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="150" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="150" />
+                        </Grid.RowDefinitions>
+                        <Image Source="Images\panda.jpg" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Top" />
+                        <Image Source="Images\zootopia-poster-star-wars.jpg" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Top" />
+                        <Image Source="Images\panda.jpg" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Top" />
+
+
+                    </Grid>
+                </Border>
+                <Border Height="477"  BorderBrush="Black" Width="530"  >
+                    <Grid Margin="0,0,0,0" ShowGridLines="True" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="123" />
+
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Title:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="35"  />
+                        <Label Grid.Column="0" Grid.Row="1" Content="Time:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="38"  />
+                        <Label Grid.Column="0" Grid.Row="2" Content="Location:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="58"  />
+                        <Label Grid.Column="0" Grid.Row="3" Content="Money:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="49"  />
+                        <Label Grid.Column="0" Grid.Row="4" Content="Sponsor:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="56"  />
+                        <Button x:Name="LikeButton" Grid.Column="2" Grid.Row="3" Content="Like" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                        <Button x:Name="JoinButton" Grid.Column="2" Grid.Row="4" Content="Join" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <ScrollBar DockPanel.Dock="Right" Height="476" Width="37"/>
             </DockPanel>
         </Border>
 
