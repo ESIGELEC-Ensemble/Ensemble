@@ -25,31 +25,3 @@
     </Grid>
 </Window>
 
-<Grid.RowDefinitions>
-    <RowDefinition Height="60" />
-    <RowDefinition Height="150" />
-    <RowDefinition Height="10" />
-    <RowDefinition Height="150" />
-    <RowDefinition Height="10" />
-    <RowDefinition Height="150" />
-</Grid.RowDefinitions>
-
-<Grid.ColumnDefinitions>
-    <ColumnDefinition Width="150" />
-    <ColumnDefinition Width="85" />
-    <ColumnDefinition Width="400" />
-    <ColumnDefinition Width="*" />
-</Grid.ColumnDefinitions>
-
-<!--filter by time-->
-<Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" Grid.Row="0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2"/>
-<Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" />
-
-<!--extract activity from database and put images here-->
-<Image Grid.Row="1" Source="Images\zootopia-poster-star-wars.jpg" HorizontalAlignment="center"  VerticalAlignment="Center" Height="150" Margin="31,1,31,0" Width="101"  />
-<Image Grid.Row="3" Source="Images\panda.jpg" HorizontalAlignment="center"  VerticalAlignment="Center" Height="150" Margin="26,1,26,0" Width="111"  />
-<Image Grid.Row="5" Source="Images\zootopia-poster-star-wars.jpg" HorizontalAlignment="center"  VerticalAlignment="Center" Height="150" Margin="31,0" Width="101"    />
-<Label Content="Label" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Margin="0,1,0,0"/>
-
-
-</Grid>
