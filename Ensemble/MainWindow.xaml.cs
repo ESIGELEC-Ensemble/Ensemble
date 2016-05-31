@@ -27,6 +27,9 @@ namespace Ensemble
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            string email = loginEmail.Text;
+            string password = loginPassword.Password;
+            DBManager.login(email, password);
             FirstPage firstPage = new FirstPage();
             //this will open your child window
             firstPage.Show();
