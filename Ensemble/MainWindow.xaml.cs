@@ -29,12 +29,30 @@ namespace Ensemble
         {
             string email = loginEmail.Text;
             string password = loginPassword.Password;
-            DBManager.login(email, password);
-            FirstPage firstPage = new FirstPage();
-            //this will open your child window
-            firstPage.Show();
-            //this will close parent window. windowOne in this case
-            this.Close();
+
+            string info = DBManager.login(email, password);
+
+            if (info == "loged_in")
+            {
+                FirstPage firstPage = new FirstPage();
+                //this will open your child window
+                firstPage.Show();
+                //this will close parent window. windowOne in this case
+                this.Close();
+            }
+            else if (info == "wrong_password")
+            {
+                info1.Content = "Password is wrong";
+            }
+            else if (info == "not_exist")
+            {
+                info1.Content = "Email not exists";
+            }
+            else
+            {
+                info1.Content = "Database connection wrong";
+            }
+
         }
 
         private void LoginEmail_TextChanged(object sender, TextChangedEventArgs e)
@@ -47,14 +65,27 @@ namespace Ensemble
 
         private void registerButton_Click(object sender, RoutedEventArgs e)
         {
+            string name = registerName.Text;
+            string email = registerEmail.Text;
+            string password = registerPassword.Password;
+            string info = DBManager.register(email,name,password, null);
+            if (info == "success")
+            {
+                Window2 twoPage = new Window2();
+                //this will open your child window
+                twoPage.Show();
+                //this will close parent window. windowOne in this case
+                this.Close();
+            }
+            else if (info == "exist")
+            {
+                info2.Content = "Email exists";
+            }
+            else
+            {
+                info2.Content = "Connection wrong";
+            }
 
-            Window2 twoPage = new Window2();
-            //this will open your child window
-            twoPage.Show();
-            //this will close parent window. windowOne in this case
-            this.Close();
         }
-
-       
     }
 }

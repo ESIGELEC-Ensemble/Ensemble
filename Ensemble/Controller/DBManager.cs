@@ -81,13 +81,14 @@ namespace Ensemble
                         return true;
                 }
             }
-
+            DBManager.disconnect();
             return false;
         }
 
 
-        public static void register(string email, string name, string password, string photoURL)
+        public static string register(string email, string name, string password, string photoURL)
         {
+            string return_str = "";
             if(photoURL == null){// default photo url
                 photoURL = "";
             }
@@ -95,6 +96,7 @@ namespace Ensemble
             {
                 if (!DBManager.isUserExist(email))//check if the user is exist
                 {
+                    DBManager.connect();
                     MySqlCommand cmd = new MySqlCommand();
                     password = hashPassword(password);
                     cmd.Connection = conn;
@@ -105,17 +107,20 @@ namespace Ensemble
                     cmd.Parameters.AddWithValue("@t_password", password);
                     cmd.Parameters.AddWithValue("@t_photo", photoURL);
                     cmd.ExecuteNonQuery();
+                    return_str = "success";
+                    DBManager.disconnect();
                 }
                 else
                 {
-                    System.Console.WriteLine("Email exist!");
+                    return_str = "exist";
                 }
             }
-            DBManager.disconnect();
+            return return_str;
         }
 
-        public static void login(string e, string p)
+        public static string login(string e, string p)
         {
+            string return_str = "";
             if (DBManager.connect() == 0)
             {
                 MySqlCommand cmd = new MySqlCommand();
@@ -134,20 +139,22 @@ namespace Ensemble
                     }
                     if (hashPassword(p) == password)
                     {
-                        System.Console.WriteLine("loged in");
+                        return_str = "loged_in";
                     }
                     else
                     {
-                        System.Console.WriteLine("wrong password");
+                        return_str = "wrong_password";
                     }
                 }
                 else//user name do not exist
                 {
-                    System.Console.WriteLine("the email is not exist in database");
+                    return_str = "not_exist";
                 }
 
             }
             DBManager.disconnect();
+
+            return return_str;
         }
 
 

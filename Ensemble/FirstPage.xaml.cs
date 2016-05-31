@@ -8,6 +8,11 @@ namespace Ensemble
 {
     public partial class FirstPage
     {
+        public FirstPage()
+        {
+            InitializeComponent();
+        }
+
         private void searchButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 

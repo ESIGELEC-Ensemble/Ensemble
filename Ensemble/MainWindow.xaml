@@ -24,16 +24,19 @@
         <TextBlock HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="67,17,0,0" TextWrapping="Wrap" Text="Welcome to" Foreground="Green" VerticalAlignment="Top" Height="39" Width="170" FontSize="28" FontFamily="Segoe UI Semibold"/>
         <TextBlock HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="79,56,0,0" TextWrapping="Wrap" Text="Ensemble" Foreground="Green" VerticalAlignment="Top" FontSize="28" FontFamily="Segoe UI Semibold" Height="32" Width="130"/>
 
-        <Border BorderBrush="Black"  Background="White" BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="100" Grid.Row="1" VerticalAlignment="Top" Width="208"/>
+        <Border BorderBrush="Black"  Background="White" BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="100" Grid.Row="1" VerticalAlignment="Top" Width="208">
+            <Label x:Name="info1" Content="" Margin="-1,65,93,-1" Foreground="Red"/>
+        </Border>
         <TextBox x:Name="loginEmail" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2"  Height="24" Margin="76,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="115" TextChanged="LoginEmail_TextChanged" />
         <PasswordBox x:Name="loginPassword" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2"  Height="24" Margin="76,38,0,0"  VerticalAlignment="Top" Width="115"/>
-        <RadioButton x:Name="RemeberLogin" Content="Remeber me" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2"  Margin="13,70,0,0" VerticalAlignment="Top" Height="15" Width="86" />
 
         <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2"  Margin="115,65,0,0" VerticalAlignment="Top" Width="76" Height="24" Click="LoginButton_Click"/>
         
         <TextBlock HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="264,0,0,0" TextWrapping="Wrap" Foreground="Green" Text="Leave your computer and chair, go out and feel more happy!" VerticalAlignment="Top" Width="Auto" Height="auto" FontSize="16" Grid.ColumnSpan="3"/>
        
-        <Border BorderBrush="Black" Background="White" BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="126" Margin="0,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="208"/>
+        <Border BorderBrush="Black" Background="White" BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="126" Margin="0,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="208">
+            <Label x:Name="info2" Content="" Margin="-1,91,126,-1" Foreground="Red"/>
+        </Border>
         <TextBox x:Name="registerName" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="83,18,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top"  Width="108"/>
         <TextBox x:Name="registerEmail" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="83,47,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
         <PasswordBox x:Name="registerPassword" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="83,75,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="108"/>
