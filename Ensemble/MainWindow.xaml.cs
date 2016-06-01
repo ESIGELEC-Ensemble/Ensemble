@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DatabaseService;
 
 namespace Ensemble
 {
@@ -30,7 +31,9 @@ namespace Ensemble
             string email = loginEmail.Text;
             string password = loginPassword.Password;
 
-            string info = DBManager.login(email, password);
+            //string info = DBManager.login(email, password);
+            DBManagerService dbs = new DBManagerService();
+            string info = dbs.login(email, password);
 
             if (info == "loged_in")
             {
