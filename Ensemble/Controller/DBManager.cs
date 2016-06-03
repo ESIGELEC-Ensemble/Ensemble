@@ -50,8 +50,7 @@ namespace Ensemble
             }
             return strBuilder.ToString();
         }
-
-
+        
         public static bool isUserExist(string email)
         {
             if (conn != null)
@@ -84,8 +83,7 @@ namespace Ensemble
             DBManager.disconnect();
             return false;
         }
-
-
+        
         public static string register(string email, string name, string password, string photoURL)
         {
             string return_str = "";
@@ -156,8 +154,7 @@ namespace Ensemble
 
             return return_str;
         }
-
-
+        
         public static bool add_activity(Activity a)
         {
             string name = a.name;
@@ -199,7 +196,7 @@ namespace Ensemble
             return true;
         }
 
-        public static bool delet_activity(string activityID) //implement later
+        public static bool delete_activity(string activityID) //implement later
         {
             if(DBManager.connect() == 0)
             {
@@ -211,15 +208,12 @@ namespace Ensemble
             return true;
         }
 
-
-
         public static List<Activity> get_all_activities()
         {
             List<Activity> activities = new List<Activity>();
 
             return activities;
         }
-
 
         public static List<Activity> get_activities(string key_word)
         {
@@ -245,8 +239,7 @@ namespace Ensemble
 
             return activities;
         }
-
-
+        
         public static void follow(int friendID)
         {
 
