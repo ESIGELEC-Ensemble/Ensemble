@@ -37,11 +37,13 @@ namespace Ensemble
 
             if (info == "loged_in")
             {
-                FirstPage firstPage = new FirstPage();
-                //this will open your child window
-                firstPage.Show();
-                //this will close parent window. windowOne in this case
+                FirstPage firstPage = new FirstPage();              
+                firstPage.Show();               
                 this.Close();
+
+                //Friends c = new Friends();
+               // c.Show();
+               // this.Close();
             }
             else if (info == "wrong_password")
             {
