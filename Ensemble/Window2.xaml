@@ -17,5 +17,21 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
+        <!--right area-->
+        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Right" RenderTransformOrigin="0.5,0.5" Width="253" >
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+        </Border>
+
+        <!--right area-->
+        <Border Background="White" BorderBrush="Black" BorderThickness="1" Width="330" >
+
+        </Border>
     </Grid>
 </Window>

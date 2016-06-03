@@ -22,6 +22,7 @@
             <Button Grid.Column="0" Grid.Row="3" Margin="10,10,6,20" Width="75" Height="23" HorizontalAlignment="Stretch" Name="Button1">OK</Button>
             <Button Grid.Column="0" Grid.Row="3" Margin="6,10,20,20" Width="75" Height="23" Name="Button2">Cancel</Button>
         <Button Content="Button" HorizontalAlignment="Left" Margin="166,101,0,0" Grid.Row="2" VerticalAlignment="Top" Width="74"/>
+        <DatePicker HorizontalAlignment="Left" Margin="476,121,0,0" Grid.Row="2" VerticalAlignment="Top" Height="43" Width="150"/>
     </Grid>
 </Window>
 
