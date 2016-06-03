@@ -146,15 +146,17 @@
                             <ColumnDefinition Width="60" />
                             <ColumnDefinition />
                             <ColumnDefinition Width="123" />
-
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="Title:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="35"  />
-                        <Label Grid.Column="0" Grid.Row="1" Content="Time:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="38"  />
+                        
+                       
+                        <Image Grid.RowSpan="5" Grid.ColumnSpan="3" Grid.Column="0" Source="Images\Sweet-and-happy-friends-together.jpg"  HorizontalAlignment="Left"  Margin="10,4,0,0" VerticalAlignment="Top" />
+                        <!--<Label Grid.Column="0" Grid.Row="1" Content="Time:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="38"  />
                         <Label Grid.Column="0" Grid.Row="2" Content="Location:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="58"  />
+                        <Label  Grid.Column="0" Grid.Row="0" Content="Title:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="35"  />
                         <Label Grid.Column="0" Grid.Row="3" Content="Money:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="49"  />
                         <Label Grid.Column="0" Grid.Row="4" Content="Sponsor:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="56"  />
                         <Button x:Name="LikeButton" Grid.Column="2" Grid.Row="3" Content="Like" HorizontalAlignment="Center"  VerticalAlignment="Center" />
-                        <Button x:Name="JoinButton" Grid.Column="2" Grid.Row="4" Content="Join" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                        <Button x:Name="JoinButton" Grid.Column="2" Grid.Row="4" Content="Join" HorizontalAlignment="Center"  VerticalAlignment="Center" />-->
                     </Grid>
                 </Border>
             </DockPanel>
