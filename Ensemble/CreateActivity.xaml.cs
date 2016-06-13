@@ -23,6 +23,20 @@ namespace Ensemble
         {
             InitializeComponent();
 
+            //show user's photo
+            Image userPhoto = new Image();
+            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
+            userPhoto.Source = imageSource;
+            userPhoto.Height = 55;
+            userPhoto.Margin = new Thickness(30, 4, 0, 10);
+            userPhoto.HorizontalAlignment = HorizontalAlignment.Left;
+            userPhoto.VerticalAlignment = VerticalAlignment.Center;
+
+            Grid.SetRow(userPhoto, 0);
+            Grid.SetColumn(userPhoto, 4);
+            bar.Children.Add(userPhoto);
+
+
             //upload code
 
             // In the Click event of Browse button, I used System.Windows.Forms.OpenFileDialog control to browse images, display the image's name in TextBox. 
