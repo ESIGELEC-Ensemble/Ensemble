@@ -37,10 +37,17 @@ namespace Ensemble
 
             if (info == "loged_in")
             {
-                int uid = dbs.getUID(email);
-                FirstPage firstPage = new FirstPage(uid);              
-                firstPage.Show();               
+                ActivityDetail c = new ActivityDetail();
+                c.Show();
                 this.Close();
+
+                //ActivityManagement_Page firstPage = new ActivityManagement_Page();              
+                //firstPage.Show();               
+                //this.Close();
+
+                //Friends c = new Friends();
+               // c.Show();
+               // this.Close();
             }
             else if (info == "wrong_password")
             {
@@ -73,11 +80,11 @@ namespace Ensemble
             string info = DBManager.register(email,name,password, null);
             if (info == "success")
             {
-                Window2 twoPage = new Window2();
-                //this will open your child window
-                twoPage.Show();
-                //this will close parent window. windowOne in this case
-                this.Close();
+                //Window2 twoPage = new Window2();
+                ////this will open your child window
+                //twoPage.Show();
+                ////this will close parent window. windowOne in this case
+                //this.Close();
             }
             else if (info == "exist")
             {

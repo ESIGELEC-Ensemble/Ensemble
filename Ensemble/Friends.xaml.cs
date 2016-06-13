@@ -24,11 +24,25 @@ namespace Ensemble
         {
             InitializeComponent();
 
+            //show user's photo
+            Image userPhoto = new Image();
+            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
+            userPhoto.Source = imageSource;
+            userPhoto.Height = 55;
+            userPhoto.Margin = new Thickness(30, 4, 0, 10);
+            userPhoto.HorizontalAlignment = HorizontalAlignment.Left;
+            userPhoto.VerticalAlignment = VerticalAlignment.Center;
+
+            Grid.SetRow(userPhoto, 0);
+            Grid.SetColumn(userPhoto, 4);
+            bar.Children.Add(userPhoto);
+
+
             for (int i = 0; i < 5; i++) {          
 
             Image image1 = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
-            image1.Source = imageSource;
+            ImageSource imageSource2 = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
+            image1.Source = imageSource2;
             image1.Margin = new Thickness(10, 10, 10, 10);
 
             Grid.SetRow(image1, i);

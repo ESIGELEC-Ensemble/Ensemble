@@ -11,22 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Ensemble.Model;
 
 namespace Ensemble
 {
-    public partial class FirstPage
+    /// <summary>
+    /// Interaction logic for ActivityManagement_Page.xaml
+    /// </summary>
+    public partial class ActivityManagement_Page : Window
     {
-        public FirstPage()
+        public ActivityManagement_Page()
         {
             InitializeComponent();
 
-            //show user's photo
             Image userPhoto = new Image();
             ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
-            userPhoto.Margin = new Thickness(30, 4, 0, 10);
+            userPhoto.Margin = new Thickness(30,4,0,10);
             userPhoto.HorizontalAlignment = HorizontalAlignment.Left;
             userPhoto.VerticalAlignment = VerticalAlignment.Center;
 
@@ -34,48 +35,12 @@ namespace Ensemble
             Grid.SetColumn(userPhoto, 4);
             bar.Children.Add(userPhoto);
 
-            //show friends
-            for (int i = -2; i < 3; i++)
-            {
-                Image image1 = new Image();
-                ImageSource imageSource2 = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
-                image1.Source = imageSource2;
-                image1.Margin = new Thickness(10, 10, 10, 10);
-
-                Label l1 = new Label();
-                l1.FontSize = 14;
-                l1.Content = "Frank";
-                l1.HorizontalAlignment = HorizontalAlignment.Center;
-                l1.Margin = new Thickness(0, 0, 0, 0);
-
-                Grid.SetRow(image1, showFriends.RowDefinitions.Count);
-                Grid.SetColumn(image1, 0);
-
-                RowDefinition r1 = new RowDefinition();
-                r1.Height = new GridLength(80);
-                showFriends.RowDefinitions.Add(r1);
-
-                Grid.SetRow(l1, showFriends.RowDefinitions.Count);
-                Grid.SetColumn(l1, 0);
-
-                RowDefinition r2 = new RowDefinition();
-                r2.Height = new GridLength(30);
-                showFriends.RowDefinitions.Add(r2);
-
-                showFriends.Children.Add(l1);
-                showFriends.Children.Add(image1);
-
-            }
-
-            ScrollViewer sv = new ScrollViewer();
-            sv.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            sv.Content = showFriends;
 
             for (int i = 0; i < 5; i++)
             {
                 ColumnDefinition c1 = new ColumnDefinition();
                 c1.Width = new GridLength(130);
-                showActivity.ColumnDefinitions.Add(c1);       
+                showActivity.ColumnDefinitions.Add(c1);
 
                 ColumnDefinition c2 = new ColumnDefinition();
                 c2.Width = new GridLength(460);
@@ -98,7 +63,7 @@ namespace Ensemble
                 lTitle.HorizontalAlignment = HorizontalAlignment.Left;
                 lTitle.VerticalAlignment = VerticalAlignment.Center;
                 lTitle.Margin = new Thickness(0, 0, 0, 0);
-                
+
                 Label lTime = new Label();
                 lTime.FontSize = 14;
                 lTime.Content = "Time: ";
@@ -125,18 +90,9 @@ namespace Ensemble
                 lSponsor.Content = "Sponser: ";
                 lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
                 lSponsor.VerticalAlignment = VerticalAlignment.Center;
-                lSponsor.Margin = new Thickness(0, 0, 0, 0);  
-             
-                Button  btLike = new Button();
-                btLike.Content = "Like";
-                btLike.HorizontalAlignment = HorizontalAlignment.Center;
-                btLike.VerticalAlignment = VerticalAlignment.Center;
+                lSponsor.Margin = new Thickness(0, 0, 0, 0);
 
-                Button btJoin = new Button();
-                btJoin.Content = "Join";
-                btJoin.HorizontalAlignment = HorizontalAlignment.Center;
-                btJoin.VerticalAlignment = VerticalAlignment.Center;
-
+              
                 Grid.SetRow(activityPhoto, showActivity.RowDefinitions.Count);
                 Grid.SetRowSpan(activityPhoto, 5);
                 Grid.SetColumn(activityPhoto, 0);
@@ -161,9 +117,7 @@ namespace Ensemble
 
                 Grid.SetRow(lMoney, showActivity.RowDefinitions.Count);
                 Grid.SetColumn(lMoney, 1);
-
-                Grid.SetRow(btLike, showActivity.RowDefinitions.Count);
-                Grid.SetColumn(btLike, 2);
+              
                 RowDefinition r4 = new RowDefinition();
                 r4.Height = new GridLength(30);
                 showActivity.RowDefinitions.Add(r4);
@@ -171,16 +125,12 @@ namespace Ensemble
                 Grid.SetRow(lSponsor, showActivity.RowDefinitions.Count);
                 Grid.SetColumn(lSponsor, 1);
 
-                Grid.SetRow(btJoin, showActivity.RowDefinitions.Count);
-                Grid.SetColumn(btJoin, 2);
-
                 RowDefinition r5 = new RowDefinition();
                 r5.Height = new GridLength(30);
                 showActivity.RowDefinitions.Add(r5);
 
-               
                 RowDefinition r6 = new RowDefinition();
-                r6.Height = new GridLength(10);
+                r6.Height = new GridLength(20);
                 showActivity.RowDefinitions.Add(r6);
 
                 showActivity.Children.Add(lTitle);
@@ -188,14 +138,12 @@ namespace Ensemble
                 showActivity.Children.Add(lLocation);
                 showActivity.Children.Add(lMoney);
                 showActivity.Children.Add(lSponsor);
-                showActivity.Children.Add(btLike);
-                showActivity.Children.Add(btJoin);
-                showActivity.Children.Add(activityPhoto);            
-
+                showActivity.Children.Add(activityPhoto);
             }
 
-
-
         }
+
+         
+
     }
 }
