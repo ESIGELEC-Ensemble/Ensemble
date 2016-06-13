@@ -127,53 +127,32 @@
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="Date:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="Start time:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="End time:" FontSize="18"/>
-                        <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="Budget:" FontSize="18"/>
-                        <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Text="City:" FontSize="18"/>
+                        <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" Text="Budget:" FontSize="18" Margin="0,0,0,8"/>
+                        <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom" Text="City:" FontSize="18" Margin="0,0,0,8"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Text="Location:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Text="Tag:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="7" VerticalAlignment="Top" Text="Picture:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="9" VerticalAlignment="Top" Text="Introduction:" FontSize="18"/>
                         <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="10" VerticalAlignment="Top" Text="Introduction:" FontSize="18"/>
 
-                        <TextBox Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                        <DatePicker  Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left" Margin="10,10,0,0"  VerticalAlignment="Top" Width="280"/>
-                        <TextBox Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                        <TextBox Grid.Column="3"  Grid.Row="3"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                        <TextBox Grid.Column="3"  Grid.Row="4"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                        <TextBox Grid.Column="3"  Grid.Row="6"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                        <ComboBox  Grid.Column="3"  Grid.Row="5" Background="Yellow"  HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="280" Height="27" FontSize="16" Grid.RowSpan="2" >
-                            <ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
-                         FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Rouen"  
-                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Paris"  
-                         FontFamily="Verdana" FontSize="12" FontWeight="Bold"></ComboBoxItem>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Lille"  
-                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Le havre"  
-                         FontFamily="Verdana" FontSize="12" FontWeight="Bold"></ComboBoxItem>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Shanghai"  
-                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
-                    
+                        <TextBox Name="name" Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                        <DatePicker Name="date" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left" Margin="10,10,0,0"  VerticalAlignment="Top" Width="280"/>
+                        <TextBox Name="start" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                        <TextBox Name="end" Grid.Column="3"  Grid.Row="3"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                        <TextBox Name="budget" Grid.Column="3"  Grid.Row="4"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                        <TextBox Name="location" Grid.Column="3"  Grid.Row="6"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+
+                        <ComboBox Name="cityValue" Grid.Column="3"  Grid.Row="5" Background="Yellow"  HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="280" Height="27" FontSize="16" Grid.RowSpan="2" Loaded="load_city">
                         </ComboBox>
-                        <TextBox Grid.Column="3"  Grid.Row="10"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="60" Margin="10,10,0,10"/>
-                        <Button  Grid.Column="3"  Grid.Row="7" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,10,0,0"  VerticalAlignment="Top" Width="168" Height="27"/>
-                        <Label Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" Margin="183,12,0,0" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
-                        <ComboBox Background="Yellow" Grid.Column="3" Grid.Row="8"    HorizontalAlignment="Left"  Margin="10,8,0,0" VerticalAlignment="Top" Width="280" Height="26" FontSize="16" >
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Tag"  
-                		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Party"  
-                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Music"  
-                		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Movie"  
-                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Sports"  
-                		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
-                            <ComboBoxItem Background="LightBlue" Foreground="White" Content="Cook"  
-                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+
+                        <TextBox Name="intro" Grid.Column="3"  Grid.Row="10"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="60" Margin="10,10,0,10"/>
+                        <Button Name="upload" Grid.Column="3"  Grid.Row="7" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,10,0,0"  VerticalAlignment="Top" Width="168" Height="27" Click="upload_Click"/>
+                        <Label Name="path" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Left" Margin="183,12,0,0" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
+
+                        <ComboBox Name="tagValue" Background="Yellow" Grid.Column="3" Grid.Row="8"    HorizontalAlignment="Left"  Margin="10,8,0,0" VerticalAlignment="Top" Width="280" Height="26" FontSize="16" Loaded="load_tag">
                         </ComboBox>
-                        <Button Content="Create" Background="GreenYellow" Grid.Column="3" Grid.Row="12" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,10" Width="146" Height="30" />
+
+                        <Button Content="Create" Background="GreenYellow" Grid.Column="3" Grid.Row="12" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,10" Width="146" Height="30" Click="Button_Click" />
 
 
                     </Grid>

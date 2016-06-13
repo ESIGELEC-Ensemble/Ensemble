@@ -22,6 +22,9 @@ namespace DatabaseService
         string login(string e, string p);
 
         [OperationContract]
+        int getUID(string e);
+
+        [OperationContract]
         List<User> getMyFriends(string userId);
 
         [OperationContract]
@@ -68,6 +71,12 @@ namespace DatabaseService
 
         [OperationContract]
         void commentActivity(int userId, int activityId, string comment);
+
+        [OperationContract]
+        List<string> getAllTags();
+
+        [OperationContract]
+        List<string> getAllCities();
 
     }
 

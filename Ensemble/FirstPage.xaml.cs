@@ -17,14 +17,17 @@ namespace Ensemble
 {
     public partial class FirstPage
     {
-        public FirstPage()
+        int UID = -1;
+        public FirstPage(int uid)
         {
             InitializeComponent();
+            UID = uid;
 
             for (int i = -2; i < 3; i++)
             {
                 Image image1 = new Image();
-                ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
+                //set to relative path later
+                ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\panda.jpg"));
                 image1.Source = imageSource;
                 image1.Margin = new Thickness(10, 10, 10, 10);
 
@@ -60,7 +63,8 @@ namespace Ensemble
             for (int i = 0; i < 5; i++)
             {
                 Image image1 = new Image();
-                ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
+                //set to relative later
+                ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\panda.jpg"));
                 image1.Source = imageSource;
                 image1.Margin = new Thickness(10, 10, 10, 10);
 
@@ -89,6 +93,14 @@ namespace Ensemble
 
             }
 
+        }
+
+        //just for testing 
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateActivity createActivity = new CreateActivity(UID);
+            createActivity.Show();
+            this.Close();
         }
     }
 }

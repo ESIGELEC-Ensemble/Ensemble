@@ -37,13 +37,10 @@ namespace Ensemble
 
             if (info == "loged_in")
             {
-                FirstPage firstPage = new FirstPage();              
+                int uid = dbs.getUID(email);
+                FirstPage firstPage = new FirstPage(uid);              
                 firstPage.Show();               
                 this.Close();
-
-                //Friends c = new Friends();
-               // c.Show();
-               // this.Close();
             }
             else if (info == "wrong_password")
             {

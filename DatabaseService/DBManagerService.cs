@@ -124,7 +124,28 @@ namespace DatabaseService
 
             return return_str;
         }
-        
+
+        public int getUID(string e)
+        {
+            int uid = -1;
+            MySqlConnection conn = this.connect();
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.Connection = conn;
+
+                cmd.CommandText = "SELECT id FROM user WHERE email = @t_email";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@t_email", e);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    uid = reader.GetInt32("id");
+                }
+            }
+            this.disConnect(conn);
+            return uid;
+        }
+
         private string hashPassword(string p)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -339,7 +360,7 @@ namespace DatabaseService
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM relationship_table WHERE userId=@uid";
+                    cmd.CommandText = "SELECT * FROM relationship WHERE userId=@uid";
                     cmd.Parameters.AddWithValue("@uid", userId);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -619,7 +640,7 @@ namespace DatabaseService
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO relationship_table VALUE(@u_id,@f_id)";
+                    cmd.CommandText = "INSERT INTO relationship VALUE(@u_id,@f_id)";
                     cmd.Parameters.AddWithValue("@u_id", userId);
                     cmd.Parameters.AddWithValue("@f_id", followId);
                     cmd.ExecuteNonQuery();
@@ -712,7 +733,7 @@ namespace DatabaseService
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "DELETE FROM relationship_table WHERE userId = @u_id AND  friendId = @f_id";
+                    cmd.CommandText = "DELETE FROM relationship WHERE userId = @u_id AND  friendId = @f_id";
                     cmd.Parameters.AddWithValue("@u_id", userId);
                     cmd.Parameters.AddWithValue("@f_id", followId);
                     cmd.ExecuteNonQuery();
@@ -724,6 +745,64 @@ namespace DatabaseService
                 System.Console.WriteLine("you have already followed this friend: " + e.Message);
             }
             this.disConnect(conn);
+        }
+
+        public List<string> getAllTags()
+        {
+            List<string> tags = new List<string>();
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "SELECT * FROM tag";
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string tag = reader.GetString("tagName");
+                        tags.Add(tag);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Get data wrong!" + e.Message);
+            }
+
+            this.disConnect(conn);
+            return tags;
+        }
+
+        public List<string> getAllCities()
+        {
+            List<string> cities = new List<string>();
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "SELECT * FROM city";
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string tag = reader.GetString("cityName");
+                        cities.Add(tag);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Get data wrong!" + e.Message);
+            }
+
+            this.disConnect(conn);
+            return cities;
         }
     }
 }

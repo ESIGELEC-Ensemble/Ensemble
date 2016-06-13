@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2016 at 02:10 PM
+-- Generation Time: Jun 10, 2016 at 06:03 PM
 -- Server version: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -37,20 +37,29 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `createdUserID` int(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `act_location` varchar(255) NOT NULL,
+  `tag` varchar(100) NOT NULL,
+  `picURL` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `act_name`, `act_date`, `act_startTime`, `act_endTime`, `budget`, `introduction`, `createdUserID`, `city`, `act_location`, `tag`, `picURL`) VALUES
+(4, 'asd', '2016-06-03', 'asd', 'asd', 123, 'asd', 123, 'asd', 'asd', 'asd', 'asd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_tag`
+-- Table structure for table `city`
 --
 
-CREATE TABLE IF NOT EXISTS `activity_tag` (
-  `activityId` int(11) NOT NULL,
-  `tagId` int(11) NOT NULL,
-  PRIMARY KEY (`activityId`,`tagId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `city` (
+  `cityId` int(11) NOT NULL AUTO_INCREMENT,
+  `cityName` varchar(200) NOT NULL,
+  PRIMARY KEY (`cityId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -66,6 +75,13 @@ CREATE TABLE IF NOT EXISTS `comment_table` (
   PRIMARY KEY (`userId`,`activityId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `comment_table`
+--
+
+INSERT INTO `comment_table` (`userId`, `activityId`, `comment`, `createdDate`) VALUES
+(5, 4, 'awesome!', '2016-06-03');
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +93,13 @@ CREATE TABLE IF NOT EXISTS `joined_table` (
   `actId` int(11) NOT NULL,
   PRIMARY KEY (`userId`,`actId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `joined_table`
+--
+
+INSERT INTO `joined_table` (`userId`, `actId`) VALUES
+(5, 4);
 
 -- --------------------------------------------------------
 
@@ -90,42 +113,43 @@ CREATE TABLE IF NOT EXISTS `liked_table` (
   PRIMARY KEY (`userId`,`activityId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `picture_table`
+-- Dumping data for table `liked_table`
 --
 
-CREATE TABLE IF NOT EXISTS `picture_table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `activityId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `liked_table` (`userId`, `activityId`) VALUES
+(5, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `relationship_table`
+-- Table structure for table `relationship`
 --
 
-CREATE TABLE IF NOT EXISTS `relationship_table` (
+CREATE TABLE IF NOT EXISTS `relationship` (
   `userId` int(11) NOT NULL,
   `friendId` int(11) NOT NULL,
   PRIMARY KEY (`userId`,`friendId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `relationship`
+--
+
+INSERT INTO `relationship` (`userId`, `friendId`) VALUES
+(5, 6);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag_table`
+-- Table structure for table `tag`
 --
 
-CREATE TABLE IF NOT EXISTS `tag_table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tagName` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `tag` (
+  `activityId` int(11) NOT NULL,
+  `tagId` int(11) NOT NULL,
+  PRIMARY KEY (`activityId`,`tagId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -141,14 +165,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `photo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `name`, `password`, `photo`) VALUES
-(5, 'frank', 'frank', '3244185981728979115075721453575112', '');
+(12, 'frank', 'frank', '3244185981728979115075721453575112', ''),
+(11, 'frank@123.com', 'frank', '3244185981728979115075721453575112', ''),
+(6, 'lilian@123.com', 'lilian', '', ''),
+(9, 'ASD', 'ASD', '1782391561231623591335495145523220418474', ''),
+(10, '123', '123', '3244185981728979115075721453575112', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
