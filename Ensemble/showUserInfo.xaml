@@ -1,7 +1,7 @@
-﻿<Window x:Class="Ensemble.UserInfo"
+﻿<Window x:Class="Ensemble.showUserInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="UserInfo" Height="650" Width="900">
+        Title="showUserInfo" Height="650" Width="900">
     <Grid>
         <DockPanel LastChildFill="True">
             <Grid x:Name="bar" Height="58" Background="YellowGreen" DockPanel.Dock="Top">
@@ -51,12 +51,11 @@
 
                     <ComboBoxItem Background="YellowGreen" Foreground="White"   
             		FontFamily="Verdana" FontSize="12" FontWeight="Bold">
-                        <Hyperlink Click="Userinfo_Click" Foreground="White" >
-                            My info
-                        </Hyperlink>
+                    <Hyperlink Click="Userinfo_Click" Foreground="White" >
+                        My info
+                    </Hyperlink>
                     </ComboBoxItem>
                 </ComboBox>
-
 
             </Grid>
 
@@ -76,7 +75,7 @@
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Green" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0" >
 
-                        <Grid DockPanel.Dock="Top" Margin="0,0,0,0"   >
+                        <Grid x:Name="userInfo" DockPanel.Dock="Top" Margin="0,0,0,0"   >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="120" />
@@ -110,7 +109,7 @@
 
 
                     </Border>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Edit My Info" VerticalAlignment="Top" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFD4D4D4"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="My Info" VerticalAlignment="Top" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFD4D4D4"/>
 
                 </Grid>
             </Border>

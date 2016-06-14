@@ -37,17 +37,10 @@ namespace Ensemble
 
             if (info == "loged_in")
             {
-                ActivityDetail c = new ActivityDetail();
+                FirstPage c = new FirstPage();
                 c.Show();
                 this.Close();
 
-                //ActivityManagement_Page firstPage = new ActivityManagement_Page();              
-                //firstPage.Show();               
-                //this.Close();
-
-                //Friends c = new Friends();
-               // c.Show();
-               // this.Close();
             }
             else if (info == "wrong_password")
             {

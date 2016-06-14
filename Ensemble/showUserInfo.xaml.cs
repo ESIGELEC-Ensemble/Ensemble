@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 namespace Ensemble
 {
     /// <summary>
-    /// Interaction logic for UserInfo.xaml
+    /// Interaction logic for showUserInfo.xaml
     /// </summary>
-    public partial class UserInfo : Window
+    public partial class showUserInfo : Window
     {
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -45,31 +45,17 @@ namespace Ensemble
             welPage.Show();
             this.Close();
         }
-          private void Userinfo_Click(object sender, RoutedEventArgs e)
+
+        private void Userinfo_Click(object sender, RoutedEventArgs e)
         {
             showUserInfo shwoPage = new showUserInfo();
             shwoPage.Show();
             this.Close();
         }
-        
 
-        public UserInfo()
+        public showUserInfo()
         {
             InitializeComponent();
-
-            //show user's photo
-            Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
-            userPhoto.Source = imageSource;
-            userPhoto.Height = 55;
-            userPhoto.Margin = new Thickness(30, 4, 0, 10);
-            userPhoto.HorizontalAlignment = HorizontalAlignment.Left;
-            userPhoto.VerticalAlignment = VerticalAlignment.Center;
-
-            Grid.SetRow(userPhoto, 0);
-            Grid.SetColumn(userPhoto, 4);
-            bar.Children.Add(userPhoto);
-
         }
     }
 }
