@@ -56,13 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActivityDetail.xaml.cs">
-      <DependentUpon>ActivityDetail.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ActivityManagement_Page.xaml.cs">
       <DependentUpon>ActivityManagement_Page.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controller\DBManager.cs" />
     <Compile Include="CreateActivity.xaml.cs">
       <DependentUpon>CreateActivity.xaml</DependentUpon>
     </Compile>
@@ -72,8 +68,6 @@
     <Compile Include="Friends.xaml.cs">
       <DependentUpon>Friends.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Activity.cs" />
-    <Compile Include="Model\user.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,10 +81,6 @@
     <Compile Include="UserInfo.xaml.cs">
       <DependentUpon>UserInfo.xaml</DependentUpon>
     </Compile>
-    <Page Include="ActivityDetail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ActivityManagement_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

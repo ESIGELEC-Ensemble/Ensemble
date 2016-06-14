@@ -146,6 +146,15 @@ namespace DatabaseService
             return uid;
         }
 
+        public string getUserImage(int uid)
+        {
+            string url = "";
+
+
+
+            return url;
+        }
+
         private string hashPassword(string p)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -350,7 +359,7 @@ namespace DatabaseService
             return null;
         }
 
-        public List<User> getMyFriends(string userId)
+        public List<User> getMyFriends(int userId)
         {
             List<User> friends = new List<User>();
             MySqlConnection conn = this.connect();

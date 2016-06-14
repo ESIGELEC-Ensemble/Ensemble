@@ -25,7 +25,7 @@ namespace Ensemble
 
             //show user's photo
             Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
+            ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg"));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
             userPhoto.Margin = new Thickness(30, 4, 0, 10);

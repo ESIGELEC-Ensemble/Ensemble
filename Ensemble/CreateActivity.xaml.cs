@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+using DatabaseService;
 
 namespace Ensemble
 {
@@ -19,13 +22,17 @@ namespace Ensemble
     /// </summary>
     public partial class CreateActivity : Window
     {
-        public CreateActivity()
+        DBManagerService database = new DBManagerService();
+
+        int userID = -1;
+        public CreateActivity(int uid)
         {
             InitializeComponent();
 
+            userID = uid;
             //show user's photo
             Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
+            ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg"));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
             userPhoto.Margin = new Thickness(30, 4, 0, 10);
@@ -36,60 +43,81 @@ namespace Ensemble
             Grid.SetColumn(userPhoto, 4);
             bar.Children.Add(userPhoto);
 
+        }
 
-            //upload code
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string act_name = name.Text;
+            DateTime act_date = (DateTime)date.SelectedDate;
+            string act_start = start.Text;
+            string act_end = end.Text;
+            string act_budget_str = budget.Text;
+            int act_budget = 0;
+            Int32.TryParse(act_budget_str, out act_budget);
 
-            // In the Click event of Browse button, I used System.Windows.Forms.OpenFileDialog control to browse images, display the image's name in TextBox. 
+            string act_city = (string)cityValue.SelectedItem;
+
+            string act_location = location.Text;
+
+            string imgURL;
+            if (path.Content.ToString() == "image")
+            {
+                imgURL = null;
+            }
+            else
+            {
+                imgURL = path.Content.ToString();
+            }
+
+            string act_tag = (string)tagValue.SelectedItem;
+
+            string act_intro = intro.Text;
+
+            Activity act = new Activity(act_name, act_date, act_start, act_end, act_budget, act_intro, userID, act_city, act_location
+                , imgURL, act_tag);
+
+            database.createActivity(act);
 
 
-//            private void Button_Click(object sender, RoutedEventArgs e) 
-//{ 
-//            OpenFileDialog FileDialog = new System.Windows.Forms.OpenFileDialog(); 
-//            FileDialog.Title = "Select A File"; 
-//            FileDialog.InitialDirectory = ""; 
-//            FileDialog.Filter = "Image Files (*.gif,*.jpg,*.jpeg,*.bmp,*.png)|*.gif;*.jpg;*.jpeg;*.bmp;*.png"; 
-//            FileDialog.FilterIndex = 1; 
- 
-//            if (FileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
-//            { 
-//                TextBox1.Text = FileDialog.FileName; 
-//                Label1.Content = GetFileNameNoExt(TextBox1.Text.Trim()); 
-//                BitmapImage bmp = new BitmapImage(new Uri(TextBox1.Text.Trim())); 
-//                image1.Source = bmp; 
-//            } 
-//            else 
-//            { 
-//                Label1.Content = "You didn't select any image file...."; 
-//            } 
-//} 
- 
-//public string GetFileNameNoExt(string FilePathFileName) 
-//{ 
-//            return System.IO.Path.GetFileNameWithoutExtension(FilePathFileName); 
-//}
+            //FirstPage firstPage = new FirstPage(userID);
+            //firstPage.Show();
+            //this.Close();
+        }
 
+        private void upload_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Image files (*.jpg;*png;*jpeg)|*.jpg;*png;*jpeg";
+            openFileDialog.Title = "Select activity image";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                path.Content = openFileDialog.FileName;
+            }
 
-
-            //In the Click event of Upload button, note that the process of Entity Framework:
-            //private void SaveImage_Click(object sender, RoutedEventArgs e) 
-            //{
-            //    FileStream Stream = new FileStream(TextBox1.Text, FileMode.Open, FileAccess.Read);
-            //    StreamReader Reader = new StreamReader(Stream);
-            //    Byte[] ImgData = new Byte[Stream.Length - 1];
-            //    Stream.Read(ImgData, 0, (int)Stream.Length - 1);
-            //    using (dbtestEntities db = new dbtestEntities())
-            //    {
-            //        imageinfo o = db.imageinfoes.Create();
-            //        o.Name = GetFileNameNoExt(TextBox1.Text);
-            //        o.ImgData = ImgData;
-            //        db.imageinfoes.Add(o);
-            //        db.SaveChanges();
-            //    }
-
-            //    Label1.Content = GetFileNameNoExt(TextBox1.Text.Trim()) + " Stored Successfully....";
-            //}
 
         }
+
+        private void load_city(object sender, RoutedEventArgs e)
+        {
+            List<string> cities = database.getAllCities();
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = cities;
+            comboBox.SelectedIndex = 0;
+        }
+
+        private void load_tag(object sender, RoutedEventArgs e)
+        {
+            List<string> tags = database.getAllTags();
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = tags;
+            comboBox.SelectedIndex = 0;
+
+        }
+
+
+
 
     }
 }

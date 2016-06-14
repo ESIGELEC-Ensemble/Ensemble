@@ -25,7 +25,7 @@ namespace DatabaseService
         int getUID(string e);
 
         [OperationContract]
-        List<User> getMyFriends(string userId);
+        List<User> getMyFriends(int userId);
 
         [OperationContract]
         string register(User u);
@@ -77,6 +77,9 @@ namespace DatabaseService
 
         [OperationContract]
         List<string> getAllCities();
+
+        [OperationContract]
+        string getUserImage(int uid);
 
     }
 
@@ -258,6 +261,9 @@ namespace DatabaseService
             password = t_password;
             photoURL = t_photoURL;
         }
+
+
+
 
     }
 
