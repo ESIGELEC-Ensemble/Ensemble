@@ -19,6 +19,39 @@ namespace Ensemble
     /// </summary>
     public partial class ActivityManagement_Page : Window
     {
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            FirstPage mainPage = new FirstPage();
+            mainPage.Show();
+            this.Close();
+        }
+
+        private void Activitylink_Click(object sender, RoutedEventArgs e)
+        {
+            ActivityManagement_Page activityPage = new ActivityManagement_Page();
+            activityPage.Show();
+            this.Close();
+        }
+        private void Friendlink_Click(object sender, RoutedEventArgs e)
+        {
+            Friends friendsPage = new Friends();
+            friendsPage.Show();
+            this.Close();
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow welPage = new MainWindow();
+            welPage.Show();
+            this.Close();
+        }
+        private void Userinfo_Click(object sender, RoutedEventArgs e)
+        {
+            showUserInfo shwoPage = new showUserInfo();
+            shwoPage.Show();
+            this.Close();
+        }
+
         public ActivityManagement_Page()
         {
             InitializeComponent();
@@ -140,6 +173,14 @@ namespace Ensemble
                 showActivity.Children.Add(lSponsor);
                 showActivity.Children.Add(activityPhoto);
             }
+
+        }
+
+        private void btCreate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateActivity createPage = new CreateActivity();
+            createPage.Show();
+            this.Close();
 
         }
 

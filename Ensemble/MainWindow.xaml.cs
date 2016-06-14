@@ -21,8 +21,6 @@ namespace Ensemble
     /// </summary>
     public partial class MainWindow : Window
     {
-        DBManagerService dbms = new DBManagerService();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -37,30 +35,11 @@ namespace Ensemble
             DBManagerService dbs = new DBManagerService();
             string info = dbs.login(email, password);
 
-
             if (info == "loged_in")
             {
-                int userID = dbs.getUID(email);
-                //ActivityManagement_Page firstPage = new ActivityManagement_Page();              
-                //firstPage.Show();               
-                //this.Close();
-
-                //Friends c = new Friends();
-               //c.Show();
-               // this.Close();
-
-                //CreateActivity createPage = new CreateActivity(userID);
-                //createPage.Show();
-                //this.Close();
-
-                UserInfo userInfo = new UserInfo();
-                userInfo.Show();
+                FirstPage c = new FirstPage();
+                c.Show();
                 this.Close();
-
-
-                //FirstPage firstPage = new FirstPage(userID);
-                //firstPage.Show();
-                //this.Close();
 
             }
             else if (info == "wrong_password")
@@ -91,9 +70,7 @@ namespace Ensemble
             string name = registerName.Text;
             string email = registerEmail.Text;
             string password = registerPassword.Password;
-            User user = new User(0,email,name,password, null);
-            string info = dbms.register(user);
-
+            string info = DBManager.register(email,name,password, null);
             if (info == "success")
             {
                 //Window2 twoPage = new Window2();
