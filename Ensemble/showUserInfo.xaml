@@ -51,9 +51,9 @@
 
                     <ComboBoxItem Background="YellowGreen" Foreground="White"   
             		FontFamily="Verdana" FontSize="12" FontWeight="Bold">
-                    <Hyperlink Click="Userinfo_Click" Foreground="White" >
-                        My info
-                    </Hyperlink>
+                        <Hyperlink Click="Userinfo_Click" Foreground="White" >
+                            My info
+                        </Hyperlink>
                     </ComboBoxItem>
                 </ComboBox>
 
@@ -76,35 +76,7 @@
                     <Border BorderBrush="Green" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0" >
 
                         <Grid x:Name="userInfo" DockPanel.Dock="Top" Margin="0,0,0,0"   >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="300" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-
-                            </Grid.RowDefinitions>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="Name:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="Old  Password:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="New Password:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Text="Picture:" FontSize="18" Margin="0,6,0,0" />
-
-                            <TextBox Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <TextBox Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <Button  Grid.Column="3"  Grid.Row="3" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,3,0,0"  VerticalAlignment="Top" Width="168" Height="27"/>
-                            <Label Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="183,5,0,7" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
-                            <Button Content="Submit" Background="LightSkyBlue" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,0" Width="146" Height="30" />
-                            <TextBox Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="24" Margin="10,6,0,10"/>
-
-
+                      
                         </Grid>
 
 

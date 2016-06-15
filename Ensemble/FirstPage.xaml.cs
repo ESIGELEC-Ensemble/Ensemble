@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Windows.Navigation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,10 +101,6 @@ namespace Ensemble
 
             }
 
-            ScrollViewer sv = new ScrollViewer();
-            sv.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            sv.Content = showFriends;
-
             for (int i = 0; i < 5; i++)
             {
                 ColumnDefinition c1 = new ColumnDefinition();
@@ -124,13 +122,15 @@ namespace Ensemble
                 activityPhoto.HorizontalAlignment = HorizontalAlignment.Left;
                 activityPhoto.VerticalAlignment = VerticalAlignment.Top;
 
+               
                 Label lTitle = new Label();
                 lTitle.FontSize = 14;
                 lTitle.Content = "Title: ";
                 lTitle.HorizontalAlignment = HorizontalAlignment.Left;
                 lTitle.VerticalAlignment = VerticalAlignment.Center;
                 lTitle.Margin = new Thickness(0, 0, 0, 0);
-                
+
+              
                 Label lTime = new Label();
                 lTime.FontSize = 14;
                 lTime.Content = "Time: ";
@@ -226,8 +226,19 @@ namespace Ensemble
 
             }
 
+        //    ScrollViewer sv = new ScrollViewer();
+        //    sv.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+        //    //sv.Content = showFriends;
+        //    //mainWindow.Content = sv;
 
+        //    ScrollViewer sv = new ScrollViewer();
+        //    sv.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+        //    showFriends.Children.Add(sv);
+        //    sv.Scroll += new System.Windows.Forms.ScrollEventHandler(vScroller_Scroll);
 
         }
+
+
     }
 }
+

@@ -69,22 +69,100 @@ namespace Ensemble
             Grid.SetColumn(userPhoto, 4);
             bar.Children.Add(userPhoto);
 
+            //serch friends
+            ColumnDefinition c1 = new ColumnDefinition();
+            c1.Width = new GridLength(80);
+            serachFriend.ColumnDefinitions.Add(c1);
 
-            for (int i = 0; i < 5; i++) {          
+            ColumnDefinition c2 = new ColumnDefinition();
+            c2.Width = new GridLength(200);
+            serachFriend.ColumnDefinitions.Add(c2);
 
-            Image image1 = new Image();
-            ImageSource imageSource2 = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
-            image1.Source = imageSource2;
-            image1.Margin = new Thickness(10, 10, 10, 10);
+            Label lTitle = new Label();
+            lTitle.FontSize = 22;
+            var bc = new BrushConverter();
+            lTitle.Foreground = (Brush)bc.ConvertFrom("#FF7E3737");
+            lTitle.Content = "Search Friend";
+            lTitle.FontFamily = new FontFamily("Lucida Handwriting"); 
+            lTitle.HorizontalAlignment = HorizontalAlignment.Left;
+            lTitle.VerticalAlignment = VerticalAlignment.Center;
+            lTitle.Margin = new Thickness(20, 0, 0, 0);
 
-            Grid.SetRow(image1, i);
-            Grid.SetColumn(image1, 0);
+            Label lEmail = new Label();
+            lEmail.FontSize = 14;
+            lEmail.Content = "Email: ";
+            lEmail.FontFamily = new FontFamily("Lucida Handwriting"); 
+            lEmail.Margin = new Thickness(20, 0, 0, 0);
+            lEmail.HorizontalAlignment = HorizontalAlignment.Left;
+            lEmail.VerticalAlignment = VerticalAlignment.Center;
 
-            RowDefinition rowDef1 = new RowDefinition();
-            rowDef1.Height = new GridLength(90);
-            showPicture.RowDefinitions.Add(rowDef1);
+            TextBox tbEmail = new TextBox();
+            tbEmail.Height = 30;
+            tbEmail.Width = 160;
+            tbEmail.FontFamily = new FontFamily("Lucida Handwriting"); 
+            tbEmail.HorizontalAlignment = HorizontalAlignment.Center;
+            tbEmail.VerticalAlignment = VerticalAlignment.Center;
 
-            showPicture.Children.Add(image1);
+            Button btSearch = new Button();
+            btSearch.Content = "Search";
+            btSearch.Background = Brushes.LightBlue;
+            btSearch.Width = 100;
+            btSearch.FontFamily = new FontFamily("Lucida Handwriting"); 
+            btSearch.Height = 30;
+            btSearch.FontSize = 14;
+            btSearch.Click += new System.Windows.RoutedEventHandler(searchButton_Click);
+            btSearch.Margin = new Thickness(30, 0, 0, 0);
+            btSearch.HorizontalAlignment = HorizontalAlignment.Center;
+            btSearch.VerticalAlignment = VerticalAlignment.Center;
+
+            Grid.SetRow(lTitle, 0);
+            Grid.SetColumnSpan(lTitle, 2);
+            Grid.SetColumn(lTitle, 0);
+
+            Grid.SetRow(lEmail, 1);
+            Grid.SetColumn(lEmail, 0);
+            RowDefinition row1 = new RowDefinition();
+            row1.Height = new GridLength(50);
+            serachFriend.RowDefinitions.Add(row1);
+
+            Grid.SetRow(tbEmail, 1);
+            Grid.SetColumn(tbEmail, 1);
+            RowDefinition row2 = new RowDefinition();
+            row2.Height = new GridLength(50);
+            serachFriend.RowDefinitions.Add(row2);
+
+            Grid.SetRow(btSearch, 3);
+            Grid.SetColumnSpan(btSearch, 2);
+            Grid.SetColumn(btSearch, 0);
+            RowDefinition row4 = new RowDefinition();
+            row4.Height = new GridLength(10);
+            serachFriend.RowDefinitions.Add(row4);
+
+            RowDefinition row5 = new RowDefinition();
+            row5.Height = new GridLength(60);
+            serachFriend.RowDefinitions.Add(row5);
+
+            serachFriend.Children.Add(lTitle);
+            serachFriend.Children.Add(lEmail);
+            serachFriend.Children.Add(tbEmail);
+            serachFriend.Children.Add(btSearch);
+
+            for (int i = 0; i < 5; i++)
+            {
+
+                Image image1 = new Image();
+                ImageSource imageSource2 = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\images.png"));
+                image1.Source = imageSource2;
+                image1.Margin = new Thickness(10, 10, 10, 10);
+
+                Grid.SetRow(image1, i);
+                Grid.SetColumn(image1, 0);
+
+                RowDefinition rowDef1 = new RowDefinition();
+                rowDef1.Height = new GridLength(90);
+                showPicture.RowDefinitions.Add(rowDef1);
+
+                showPicture.Children.Add(image1);
 
             }
 
@@ -141,6 +219,10 @@ namespace Ensemble
                 showInfo.Children.Add(b1);
 
             }
+        }
+        protected void searchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

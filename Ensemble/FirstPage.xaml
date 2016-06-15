@@ -1,4 +1,4 @@
-﻿<Window x:Class="Ensemble.FirstPage"
+﻿<Window x:Name="mainWindow" x:Class="Ensemble.FirstPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="FirstPage" Height="650" Width="900">
@@ -19,8 +19,12 @@
                 <ColumnDefinition Width="220" />
             </Grid.ColumnDefinitions>
 
-            <Label HorizontalAlignment="Left" Margin="50,0,0,10"  Foreground="White" FontSize="36" Content="Ensemble" FontFamily="Script MT Bold"/>
-            <ComboBox x:Name="city" Background="Yellow" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="33" FontSize="16" >
+            <Label HorizontalAlignment="Left" Margin="50,0,0,10"   FontSize="36" FontFamily="Script MT Bold">
+                <Hyperlink Click="Hyperlink_Click" Foreground="White" >
+                    Ensemble
+                </Hyperlink>
+            </Label>
+            <ComboBox x:Name="city" Background="Yellow" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="33" FontSize="16" FontFamily="Segoe Script" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
                          FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Rouen"  
@@ -35,7 +39,7 @@
                          FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
             </ComboBox>
 
-            <ComboBox x:Name="Tag" Background="Yellow" Grid.Column="2"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="34" FontSize="16" >
+            <ComboBox x:Name="Tag" Background="Yellow" Grid.Column="2"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="34" FontSize="16" FontFamily="Segoe Script">
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Tag"  
                 		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Party"  
@@ -64,12 +68,11 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34" Click="searchButton_Click"/>
-
+            <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34"/>
             <!--input user's picture from database here-->
 
 
-            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
+            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
 
@@ -120,8 +123,10 @@
 
 
         <!--right area-->
-        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Right">
+        <Border x:Name="avtivityBorder" Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Right">
+           
             <DockPanel LastChildFill="True">
+             
                 <Border Height="58"  BorderBrush="Black"  DockPanel.Dock="Top">
                     <Grid Height="58"  DockPanel.Dock="Top">
 
@@ -129,16 +134,17 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2"/>
-                        <Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" />
+                        <Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" FontFamily="Segoe Script"/>
+                        <Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" FontFamily="Segoe Script" />
                     </Grid>
                 </Border>
 
                 <Border  BorderBrush="Black" Width="650"  >
                     <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
-                       
+                     
                     </Grid>
                 </Border>
+                <ScrollBar Margin="15,0,0,0"></ScrollBar>
             </DockPanel>
         </Border>
     </DockPanel>
