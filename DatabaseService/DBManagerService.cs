@@ -146,10 +146,52 @@ namespace DatabaseService
             return uid;
         }
 
+        public User getUserByID(int uid)
+        {
+            User user = null;
+
+            MySqlConnection conn = this.connect();
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.Connection = conn;
+
+                cmd.CommandText = "SELECT * FROM user WHERE id=@uid";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@uid", uid);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string name = reader.GetString("name");
+                    int id = reader.GetInt32("id");
+                    string email = reader.GetString("email");
+                    string password = reader.GetString("password");
+                    string photo = reader.GetString("photo");
+
+                    user = new User(id, email, name, password, photo);
+                }
+            }
+            this.disConnect(conn);
+            return user;
+        }
+
         public string getUserImage(int uid)
         {
             string url = "";
+            MySqlConnection conn = this.connect();
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.Connection = conn;
 
+                cmd.CommandText = "SELECT photo FROM user WHERE id=@uid";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@uid", uid);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    url = reader.GetString("photo");
+                }
+            }
+            this.disConnect(conn);
 
 
             return url;
@@ -707,7 +749,7 @@ namespace DatabaseService
             this.disConnect(conn);
         }
         
-        public int editMyInfo(int currentId, string newP, string newUrl)
+        public int editMyInfo(int currentId, string newName, string newP, string newUrl)
         {
             int state = 0;
 
@@ -718,9 +760,10 @@ namespace DatabaseService
             {
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    cmd.CommandText = "UPDATE user SET password = @newP , photo = @newURL WHERE id = @id";
+                    cmd.CommandText = "UPDATE user SET name=@newN, password = @newP, photo = @newURL WHERE id = @id";
                     cmd.Connection = conn;
                     cmd.Parameters.AddWithValue("@newP", new_password);
+                    cmd.Parameters.AddWithValue("@newN", newName);
                     cmd.Parameters.AddWithValue("@newURL", newUrl);
                     cmd.Parameters.AddWithValue("@id", currentId);
                     state = cmd.ExecuteNonQuery();
@@ -813,5 +856,321 @@ namespace DatabaseService
             this.disConnect(conn);
             return cities;
         }
+        
+        public bool hasLiked(int userID, int actID)
+        {
+            bool isExist = false;
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM liked_table WHERE userId = @u_id and activityId = @act_id";
+                    cmd.Parameters.AddWithValue("@u_id", userID);
+                    cmd.Parameters.AddWithValue("@act_id", actID);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                        isExist = true;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+
+            return isExist;
+        }
+
+        public bool hasJoined(int userID, int actID)
+        {
+            bool isExist = false;
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM joined_table WHERE userId = @u_id and actId = @act_id";
+                    cmd.Parameters.AddWithValue("@u_id", userID);
+                    cmd.Parameters.AddWithValue("@act_id", actID);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                        isExist = true;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+
+            return isExist;
+        }
+
+        public List<Activity> getActAscend()
+        {
+            List<Activity> activities = new List<Activity>();
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "SELECT * FROM activity ORDER BY act_date ASC";
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string actName = reader.GetString("act_name");
+                        DateTime date = reader.GetDateTime("act_date");
+                        string startTime = reader.GetString("act_startTime");
+                        string endTime = reader.GetString("act_endTime");
+                        int budget = reader.GetInt32("budget");
+                        string introduction = reader.GetString("introduction");
+                        int createdUserID = reader.GetInt32("createdUserID");
+                        string city = reader.GetString("city");
+                        string act_location = reader.GetString("act_location");
+                        string tag = reader.GetString("tag");
+                        string picURL = reader.GetString("picURL");
+
+                        Activity activity = new Activity(id, actName, date, startTime, endTime, budget, introduction,
+                            createdUserID, city, act_location, picURL, tag);
+                        activities.Add(activity);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Get data wrong!" + e.Message);
+            }
+
+            this.disConnect(conn);
+
+            return activities;
+        }
+
+        public List<Activity> getActDescend()
+        {
+            List<Activity> activities = new List<Activity>();
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "SELECT * FROM activity ORDER BY act_date DESC";
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string actName = reader.GetString("act_name");
+                        DateTime date = reader.GetDateTime("act_date");
+                        string startTime = reader.GetString("act_startTime");
+                        string endTime = reader.GetString("act_endTime");
+                        int budget = reader.GetInt32("budget");
+                        string introduction = reader.GetString("introduction");
+                        int createdUserID = reader.GetInt32("createdUserID");
+                        string city = reader.GetString("city");
+                        string act_location = reader.GetString("act_location");
+                        string tag = reader.GetString("tag");
+                        string picURL = reader.GetString("picURL");
+
+                        Activity activity = new Activity(id, actName, date, startTime, endTime, budget, introduction,
+                            createdUserID, city, act_location, picURL, tag);
+                        activities.Add(activity);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Get data wrong!" + e.Message);
+            }
+
+            this.disConnect(conn);
+
+            return activities;
+        }
+
+        public Activity getActByID(int actID)
+        {
+            Activity act = null;
+
+            MySqlConnection conn = this.connect();
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.Connection = conn;
+
+                cmd.CommandText = "SELECT * FROM activity WHERE id=@actID";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@actID", actID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string name = reader.GetString("act_name");
+                    int id = reader.GetInt32("id");
+                    DateTime act_date = reader.GetDateTime("act_date");
+                    string actStartTime = reader.GetString("act_startTime");
+                    string actEndTime = reader.GetString("act_endTime");
+                    int budget = reader.GetInt32("budget");
+                    string intro = reader.GetString("introduction");
+                    int creatUID = reader.GetInt32("createdUserID");
+                    string city = reader.GetString("city");
+                    string location = reader.GetString("act_location");
+                    string tag = reader.GetString("tag");
+                    string picURL = reader.GetString("picURL");
+                    act = new Activity(name, act_date, actStartTime, actEndTime, budget, intro, creatUID, city, location, picURL, tag);
+                }
+            }
+            this.disConnect(conn);
+            return act;
+        }
+
+        public List<Comment> getActComment(int actID)
+        {
+            List<Comment> comments = new List<Comment>();
+
+            MySqlConnection conn = this.connect();
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.Connection = conn;
+
+                cmd.CommandText = "SELECT * FROM comment_table WHERE activityId = @actID";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@actID", actID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string commentStr = reader.GetString("comment");
+                    int userID = reader.GetInt32("userId");
+                    int activityID = reader.GetInt32("activityId");
+                    DateTime createdDate = reader.GetDateTime("createdDate");
+
+                    Comment comment = new Comment(userID, activityID, createdDate, commentStr);
+                    comments.Add(comment);
+                }
+            }
+            this.disConnect(conn);
+
+            return comments;
+        }
+
+        public List<User> searchFriendsByName(string n)
+        {
+            List<User> friends = new List<User>();
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM user WHERE name LIKE @t_name";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@t_name", "%" + n + "%");
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string email = reader.GetString("email");
+                            int id = reader.GetInt32("id");
+                            string password = reader.GetString("password");
+                            string name = reader.GetString("name");
+                            string url = reader.GetString("photo");
+
+                            User f = new User(id, email, name, password, url);
+                            friends.Add(f);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("searching wrong! " + e.Message);
+            }
+            this.disConnect(conn);
+            return friends;
+        }
+
+        public List<User> searchFriendsByEmail(string e)
+        {
+            List<User> friends = new List<User>();
+
+            return friends;
+        }
+
+        public bool isFollowed(int userID, int friendID)
+        {
+            bool isFollow = false;
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM relationship WHERE userId = @u_id and friendID = @fri_id";
+                    cmd.Parameters.AddWithValue("@u_id", userID);
+                    cmd.Parameters.AddWithValue("@fri_id", friendID);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                        isFollow = true;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+
+            return isFollow;
+        }
+
+
+        public List<Activity> getMyJoinedActivities(int userID)
+        {
+            List<Activity> acts = new List<Activity>();
+
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM joined_table WHERE userId = @u_id";
+                    cmd.Parameters.AddWithValue("@u_id", userID);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int actID = reader.GetInt32("actId");
+                            Activity a = this.getActByID(actID);
+                            acts.Add(a);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+            return acts;
+        }
+        
+
+
+        
     }
 }

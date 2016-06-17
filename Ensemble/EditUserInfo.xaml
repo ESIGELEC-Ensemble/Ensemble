@@ -1,4 +1,4 @@
-﻿<Window x:Class="Ensemble.UserInfo"
+﻿<Window x:Class="Ensemble.EditUserInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserInfo" Height="650" Width="900">
@@ -98,14 +98,13 @@
                             <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="New Password:" FontSize="18"/>
                             <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Text="Picture:" FontSize="18" Margin="0,6,0,0" />
 
-                            <TextBox Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <TextBox Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <Button  Grid.Column="3"  Grid.Row="3" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,3,0,0"  VerticalAlignment="Top" Width="168" Height="27"/>
-                            <Label Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="183,5,0,7" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
-                            <Button Content="Submit" Background="LightSkyBlue" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,0" Width="146" Height="30" />
-                            <TextBox Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="24" Margin="10,6,0,10"/>
-
-
+                            <TextBox Name="name" Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                            <TextBox Name="oldPassword" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="24" Margin="10,6,0,10"/>
+                            <TextBox Name="newPassword" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
+                            <Button  Grid.Column="3"  Grid.Row="3" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,3,0,0"  VerticalAlignment="Top" Width="168" Height="27" Click="Button_Click"/>
+                            <Label Name="path" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="183,5,0,7" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
+                            <Button Content="Submit" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,0" Width="146" Height="30" Background="#FFC5E5F9" Click="submit" />
+                            
                         </Grid>
 
 
@@ -114,9 +113,6 @@
 
                 </Grid>
             </Border>
-
-
-
         </DockPanel>
     </Grid>
 </Window>

@@ -25,13 +25,16 @@ namespace DatabaseService
         int getUID(string e);
 
         [OperationContract]
+        User getUserByID(int id);
+
+        [OperationContract]
         List<User> getMyFriends(int userId);
 
         [OperationContract]
         string register(User u);
 
         [OperationContract]
-        int editMyInfo(int currentId, string newP, string newUrl);
+        int editMyInfo(int currentId, string newName, string newP, string newUrl);
 
         [OperationContract]
         bool createActivity(Activity a);
@@ -58,6 +61,9 @@ namespace DatabaseService
         List<Activity> getMyActivities(int userId);
 
         [OperationContract]
+        List<Activity> getMyJoinedActivities(int userID);
+
+        [OperationContract]
         void likeActivity(int userId, int activityId);
 
         [OperationContract]
@@ -80,6 +86,33 @@ namespace DatabaseService
 
         [OperationContract]
         string getUserImage(int uid);
+
+        [OperationContract]
+        bool hasLiked(int user, int actID);
+
+        [OperationContract]
+        bool hasJoined(int user, int actID);
+
+        [OperationContract]
+        List<Activity> getActAscend();
+
+        [OperationContract]
+        List<Activity> getActDescend();
+
+        [OperationContract]
+        Activity getActByID(int actID);
+
+        [OperationContract]
+        List<Comment> getActComment(int actID);
+
+        [OperationContract]
+        List<User> searchFriendsByName(string n);
+
+        [OperationContract]
+        List<User> searchFriendsByEmail(string e);
+
+        [OperationContract]
+        bool isFollowed(int userID, int friendID);
 
     }
 
@@ -264,6 +297,32 @@ namespace DatabaseService
 
 
 
+
+    }
+
+    [DataContract]
+    public class Comment
+    {
+        [DataMember]
+        public string comment;
+
+        [DataMember]
+        public DateTime commentDate;
+
+        [DataMember]
+        public int actID;
+
+        [DataMember]
+        public int userID;
+
+        public Comment(int uID, int aID, DateTime cd, string comm)
+        {
+            this.actID = aID;
+            this.comment = comm;
+            this.commentDate = cd;
+            this.userID = uID;
+        }
+    
 
     }
 

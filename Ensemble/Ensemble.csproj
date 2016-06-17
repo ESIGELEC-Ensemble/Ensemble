@@ -56,11 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActivityDetail.xaml.cs">
+      <DependentUpon>ActivityDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ActivityManagement_Page.xaml.cs">
       <DependentUpon>ActivityManagement_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateActivity.xaml.cs">
       <DependentUpon>CreateActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserInfo.xaml.cs">
+      <DependentUpon>EditUserInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="FirstPage.xaml.cs">
       <DependentUpon>FirstPage.xaml</DependentUpon>
@@ -81,14 +87,19 @@
     <Compile Include="showUserInfo.xaml.cs">
       <DependentUpon>showUserInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo.xaml.cs">
-      <DependentUpon>UserInfo.xaml</DependentUpon>
-    </Compile>
+    <Page Include="ActivityDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ActivityManagement_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,10 +130,6 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserInfo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

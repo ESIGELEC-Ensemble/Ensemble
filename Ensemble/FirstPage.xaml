@@ -50,8 +50,8 @@
                 		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
             </ComboBox>
 
-            <TextBox  Width="162"   Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchTermTextBox" Margin="10,10,0,18" Height="34"/>
-            <TextBlock IsHitTestVisible="False" Text="Enter Search Term Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,17,0,29" Foreground="DarkGray" Grid.Column="3">
+            <TextBox Width="162"   Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchTermTextBox" Margin="10,10,0,18" Height="34"/>
+            <TextBlock IsHitTestVisible="False" Text="keyword" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,17,0,29" Foreground="DarkGray" Grid.Column="3">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -64,7 +64,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34"/>
+            <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34" Click="search"/>
 
             <!--input user's picture from database here-->
 
@@ -107,38 +107,34 @@
         <!-- top 2 area-->
         <Border Height="54"  BorderBrush="Black"  DockPanel.Dock="Top">
             <TextBlock HorizontalAlignment="Center" Margin="10,55,707,-80" TextWrapping="Wrap" Text="Friends" Foreground="Orange" FontSize="24" FontFamily="Showcard Gothic"/>
+            <!--<Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="75,-45,0,0" VerticalAlignment="Top" Width="142" Height="34" Click="ascendByTime" />
+            <Button x:Name="DsByTimeButton" Content="Descend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="202,-45,0,0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="1" Click="descendByTime" />-->
 
         </Border>
 
         <!--left area-->
         <Border Width="200"  BorderThickness="1" DockPanel.Dock="Left">
-
-            <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,10,0">
-            </Grid>
-
+            <ScrollViewer>
+                <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,10,0">
+                </Grid>
+            </ScrollViewer>
         </Border>
 
 
         <!--right area-->
-        <Border Background="White" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Right">
-            <DockPanel LastChildFill="True">
-                <Border Height="58"  BorderBrush="Black"  DockPanel.Dock="Top">
-                    <Grid Height="58"  DockPanel.Dock="Top">
+        <Border Background="White" DockPanel.Dock="Right" Width="686">
+            <DockPanel Name="mydock" LastChildFill="True">
+               
+                <Border  BorderBrush="Black" Width="686"  >
+                    <ScrollViewer Margin="0,0,0,0" HorizontalAlignment="Left" Width="686">
+                        <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2"/>
-                        <Button x:Name="DsByTimeButton" Content="Dscend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="250,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="2" />
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
+
                 </Border>
 
-                <Border  BorderBrush="Black" Width="650"  >
-                    <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
-                       
-                    </Grid>
-                </Border>
+
             </DockPanel>
         </Border>
     </DockPanel>

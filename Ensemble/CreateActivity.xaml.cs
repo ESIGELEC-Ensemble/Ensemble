@@ -25,14 +25,19 @@ namespace Ensemble
         DBManagerService database = new DBManagerService();
 
         int userID = -1;
+
+        string profileImage = "X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg";
+
         public CreateActivity(int uid)
         {
             InitializeComponent();
 
             userID = uid;
+
+            profileImage = database.getUserImage(uid);
             //show user's photo
             Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg"));
+            ImageSource imageSource = new BitmapImage(new Uri(profileImage));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
             userPhoto.Margin = new Thickness(30, 4, 0, 10);
@@ -44,6 +49,7 @@ namespace Ensemble
             bar.Children.Add(userPhoto);
 
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -78,10 +84,9 @@ namespace Ensemble
 
             database.createActivity(act);
 
-
-            //FirstPage firstPage = new FirstPage(userID);
-            //firstPage.Show();
-            //this.Close();
+            FirstPage firstPage = new FirstPage(userID);
+            firstPage.Show();
+            this.Close();
         }
 
         private void upload_Click(object sender, RoutedEventArgs e)
@@ -118,6 +123,37 @@ namespace Ensemble
 
 
 
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            FirstPage mainPage = new FirstPage(userID);
+            mainPage.Show();
+            this.Close();
+        }
+        private void Activitylink_Click(object sender, RoutedEventArgs e)
+        {
+            ActivityManagement_Page activityPage = new ActivityManagement_Page(userID);
+            activityPage.Show();
+            this.Close();
+        }
+        private void Friendlink_Click(object sender, RoutedEventArgs e)
+        {
+            Friends friendsPage = new Friends(userID);
+            friendsPage.Show();
+            this.Close();
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow welPage = new MainWindow();
+            welPage.Show();
+            this.Close();
+        }
+        private void Userinfo_Click(object sender, RoutedEventArgs e)
+        {
+            showUserInfo shwoPage = new showUserInfo(userID);
+            shwoPage.Show();
+            this.Close();
+        }
 
     }
 }

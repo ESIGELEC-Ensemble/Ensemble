@@ -25,10 +25,10 @@
                 </Hyperlink>
             </Label>
 
-            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
+            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
-                
+
                 <ComboBoxItem Background="YellowGreen" Foreground="White"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold">
                     <Hyperlink Click="Logout_Click" Foreground="White" >
@@ -40,12 +40,12 @@
             		FontFamily="Verdana" FontSize="12" FontWeight="Bold">
                     <Hyperlink Click="Activitylink_Click" Foreground="White" >
                         Activity
-                    </Hyperlink>               
+                    </Hyperlink>
                 </ComboBoxItem>
-                
+
                 <ComboBoxItem Background="YellowGreen" Foreground="White"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold">
-                <Hyperlink Click="Friendlink_Click" Foreground="White" >
+                    <Hyperlink Click="Friendlink_Click" Foreground="White" >
                         Friends
                     </Hyperlink>
                 </ComboBoxItem>
@@ -67,42 +67,60 @@
 
         <!--left area-->
         <Border Width="200"  BorderThickness="1" DockPanel.Dock="Left">
-
-            <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,9,0">
-            </Grid>
-
+            <ScrollViewer>
+                <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,9,0">
+                </Grid>
+            </ScrollViewer>
         </Border>
 
 
         <!--right area-->
         <Border Background="White"  DockPanel.Dock="Right">
-            
-            <DockPanel LastChildFill="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="170" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                <Border  DockPanel.Dock="Top"  >
-                    <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True"  Width="650"   >
+                <Border  Grid.Row="0" >
+                    <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True"  Width="650" Height="170"   >
                     </Grid>
                 </Border>
 
-                <Border  DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="1" Width="652" >
-                    <Grid x:Name="comment"  ShowGridLines="True" Width="650" Height="300" >
+                <Border Margin="0,0,0,0"   Grid.Row="1"  >
+                    <Grid x:Name="introduction" Width="650" Height="80" ShowGridLines="True" DockPanel.Dock="Bottom" >
                     </Grid>
                 </Border>
 
-                <Border  >
-                    <Grid x:Name="introduction" Width="650"  ShowGridLines="True" DockPanel.Dock="Bottom" >
+                <Border  DockPanel.Dock="Bottom" Grid.Row="3">
+                    <ScrollViewer>
+                        <Grid x:Name="comment"  ShowGridLines="True" Width="650"  >
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+
+                <Border BorderBrush="Green" BorderThickness="1" Grid.Row="2" Margin="10,0,20,0" >
+                    <Grid x:Name="commentBox"  ShowGridLines="True" Width="670" Margin="0,0,-10,9" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Make a Comment:" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="Orange" FontSize="16" FontFamily="Segoe WP Black"/>
+                        <TextBox Name="commentBT" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="310" Grid.RowSpan="2" Grid.Column="1"/>
+                        <Button Content="Submit" Background="LightBlue" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,10,0" Width="82" Height="26" Click="submit" />
                     </Grid>
                 </Border>
 
-                <Border DockPanel.Dock="Left"  >
-                </Border>
-                
-                <Border DockPanel.Dock="Right"  >
-                </Border>
-               
-
-            </DockPanel>
-            
+            </Grid>
         </Border>
 
     </DockPanel>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DatabaseService;
 
 namespace Ensemble
 {
@@ -19,23 +20,24 @@ namespace Ensemble
     /// </summary>
     public partial class ActivityManagement_Page : Window
     {
+        int userID = -1;
+        DBManagerService dbms = new DBManagerService();
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            FirstPage mainPage = new FirstPage();
+            FirstPage mainPage = new FirstPage(userID);
             mainPage.Show();
             this.Close();
         }
-
         private void Activitylink_Click(object sender, RoutedEventArgs e)
         {
-            ActivityManagement_Page activityPage = new ActivityManagement_Page();
+            ActivityManagement_Page activityPage = new ActivityManagement_Page(userID);
             activityPage.Show();
             this.Close();
         }
         private void Friendlink_Click(object sender, RoutedEventArgs e)
         {
-            Friends friendsPage = new Friends();
+            Friends friendsPage = new Friends(userID);
             friendsPage.Show();
             this.Close();
         }
@@ -47,17 +49,20 @@ namespace Ensemble
         }
         private void Userinfo_Click(object sender, RoutedEventArgs e)
         {
-            showUserInfo shwoPage = new showUserInfo();
+            showUserInfo shwoPage = new showUserInfo(userID);
             shwoPage.Show();
             this.Close();
         }
 
-        public ActivityManagement_Page()
+        public ActivityManagement_Page(int uid)
         {
             InitializeComponent();
+            userID = uid;
+            string imageURI = dbms.getUserImage(uid);
+
 
             Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\profile.jpg"));
+            ImageSource imageSource = new BitmapImage(new Uri(imageURI));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
             userPhoto.Margin = new Thickness(30,4,0,10);
@@ -68,8 +73,9 @@ namespace Ensemble
             Grid.SetColumn(userPhoto, 4);
             bar.Children.Add(userPhoto);
 
+            List<Activity> activities = dbms.getMyActivities(userID);
 
-            for (int i = 0; i < 5; i++)
+            foreach (Activity activity in activities)
             {
                 ColumnDefinition c1 = new ColumnDefinition();
                 c1.Width = new GridLength(130);
@@ -84,7 +90,7 @@ namespace Ensemble
                 showActivity.ColumnDefinitions.Add(c3);
 
                 Image activityPhoto = new Image();
-                ImageSource imageSource2 = new BitmapImage(new Uri("C:\\Users\\j.li.15.INTRANET\\Desktop\\panda.jpg"));
+                ImageSource imageSource2 = new BitmapImage(new Uri(activity.actPicURL));
                 activityPhoto.Source = imageSource2;
                 activityPhoto.Margin = new Thickness(0, 0, 0, 0);
                 activityPhoto.HorizontalAlignment = HorizontalAlignment.Left;
@@ -92,40 +98,47 @@ namespace Ensemble
 
                 Label lTitle = new Label();
                 lTitle.FontSize = 14;
-                lTitle.Content = "Title: ";
+                lTitle.Content = "Title:" + activity.name;
                 lTitle.HorizontalAlignment = HorizontalAlignment.Left;
                 lTitle.VerticalAlignment = VerticalAlignment.Center;
                 lTitle.Margin = new Thickness(0, 0, 0, 0);
 
                 Label lTime = new Label();
                 lTime.FontSize = 14;
-                lTime.Content = "Time: ";
+                lTime.Content = "Time:" + activity.start_time;
                 lTime.HorizontalAlignment = HorizontalAlignment.Left;
                 lTime.VerticalAlignment = VerticalAlignment.Center;
                 lTime.Margin = new Thickness(0, 0, 0, 0);
 
                 Label lLocation = new Label();
                 lLocation.FontSize = 14;
-                lLocation.Content = "Location: ";
+                lLocation.Content = "Location:" + activity.location;
                 lLocation.HorizontalAlignment = HorizontalAlignment.Left;
                 lLocation.VerticalAlignment = VerticalAlignment.Center;
                 lLocation.Margin = new Thickness(0, 0, 0, 0);
 
                 Label lMoney = new Label();
                 lMoney.FontSize = 14;
-                lMoney.Content = "Money: ";
+                lMoney.Content = "Budget:" + activity.budget;
                 lMoney.HorizontalAlignment = HorizontalAlignment.Left;
                 lMoney.VerticalAlignment = VerticalAlignment.Center;
                 lMoney.Margin = new Thickness(0, 0, 0, 0);
 
+                int createdUID = activity.created_userID;
+                User u = dbms.getUserByID(createdUID);
                 Label lSponsor = new Label();
                 lSponsor.FontSize = 14;
-                lSponsor.Content = "Sponser: ";
+                lSponsor.Content = "Sponser:" + u.name;
                 lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
                 lSponsor.VerticalAlignment = VerticalAlignment.Center;
                 lSponsor.Margin = new Thickness(0, 0, 0, 0);
 
-              
+                Button btDelete = new Button();
+                btDelete.Content = "Delete";
+                btDelete.HorizontalAlignment = HorizontalAlignment.Center;
+                btDelete.VerticalAlignment = VerticalAlignment.Center;
+
+
                 Grid.SetRow(activityPhoto, showActivity.RowDefinitions.Count);
                 Grid.SetRowSpan(activityPhoto, 5);
                 Grid.SetColumn(activityPhoto, 0);
@@ -150,13 +163,17 @@ namespace Ensemble
 
                 Grid.SetRow(lMoney, showActivity.RowDefinitions.Count);
                 Grid.SetColumn(lMoney, 1);
-              
+
                 RowDefinition r4 = new RowDefinition();
                 r4.Height = new GridLength(30);
                 showActivity.RowDefinitions.Add(r4);
 
                 Grid.SetRow(lSponsor, showActivity.RowDefinitions.Count);
                 Grid.SetColumn(lSponsor, 1);
+
+                Grid.SetRow(btDelete, showActivity.RowDefinitions.Count);
+                Grid.SetColumn(btDelete, 2);
+               
 
                 RowDefinition r5 = new RowDefinition();
                 r5.Height = new GridLength(30);
@@ -171,6 +188,7 @@ namespace Ensemble
                 showActivity.Children.Add(lLocation);
                 showActivity.Children.Add(lMoney);
                 showActivity.Children.Add(lSponsor);
+                showActivity.Children.Add(btDelete);
                 showActivity.Children.Add(activityPhoto);
             }
 
@@ -178,10 +196,9 @@ namespace Ensemble
 
         private void btCreate_Click(object sender, RoutedEventArgs e)
         {
-            CreateActivity createPage = new CreateActivity();
+            CreateActivity createPage = new CreateActivity(userID);
             createPage.Show();
             this.Close();
-
         }
 
          

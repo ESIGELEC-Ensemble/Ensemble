@@ -18,7 +18,11 @@
                 <ColumnDefinition Width="220" />
             </Grid.ColumnDefinitions>
 
-            <Label HorizontalAlignment="Left" Margin="20,0,0,10"  Foreground="White" FontSize="36" Content="Ensemble"/>
+            <Label HorizontalAlignment="Left" Margin="50,0,0,10"   FontSize="36" FontFamily="Script MT Bold">
+                <Hyperlink Click="Hyperlink_Click" Foreground="White" >
+                    Ensemble
+                </Hyperlink>
+            </Label>
             <ComboBox x:Name="city" Background="Yellow" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="33" FontSize="16" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
                          FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
@@ -72,14 +76,30 @@
             <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Logout"  
-            		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Activity"  
-            		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Friends"  
-            		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="My info"  
-            		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
+                <ComboBoxItem Background="YellowGreen" Foreground="White"
+            		FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                    <Hyperlink Click="Logout_Click" Foreground="White" >
+                        Logout
+                    </Hyperlink>
+                </ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White"  
+            		FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <Hyperlink Click="Activitylink_Click" Foreground="White" >
+                        Activity
+                    </Hyperlink>
+                </ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" 
+            		FontFamily="Georgia" FontSize="14" FontWeight="Bold">
+                    <Hyperlink Click="Friendlink_Click" Foreground="White" >
+                        Friends
+                    </Hyperlink>
+                </ComboBoxItem>
+                <ComboBoxItem Background="YellowGreen" Foreground="White" 
+            		FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <Hyperlink Click="Userinfo_Click" Foreground="White" >
+                        My info
+                    </Hyperlink>
+                </ComboBoxItem>
             </ComboBox>
         </Grid>
 
@@ -152,7 +172,7 @@
                         <ComboBox Name="tagValue" Background="Yellow" Grid.Column="3" Grid.Row="8"    HorizontalAlignment="Left"  Margin="10,8,0,0" VerticalAlignment="Top" Width="280" Height="26" FontSize="16" Loaded="load_tag">
                         </ComboBox>
 
-                        <Button Content="Create" Background="GreenYellow" Grid.Column="3" Grid.Row="12" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,10" Width="146" Height="30" Click="Button_Click" />
+                        <Button Content="Create" Background="LightBlue" Grid.Column="3" Grid.Row="12" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,10" Width="146" Height="30" Click="Button_Click" />
 
 
                     </Grid>

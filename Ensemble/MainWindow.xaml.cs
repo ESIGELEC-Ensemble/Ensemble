@@ -21,6 +21,10 @@ namespace Ensemble
     /// </summary>
     public partial class MainWindow : Window
     {
+        int userID = -1;
+        DBManagerService dbms = new DBManagerService();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +34,7 @@ namespace Ensemble
         {
             string email = loginEmail.Text;
             string password = loginPassword.Password;
+            userID = dbms.getUID(email);
 
             //string info = DBManager.login(email, password);
             DBManagerService dbs = new DBManagerService();
@@ -37,7 +42,7 @@ namespace Ensemble
 
             if (info == "loged_in")
             {
-                FirstPage c = new FirstPage();
+                FirstPage c = new FirstPage(userID);
                 c.Show();
                 this.Close();
 
@@ -70,14 +75,11 @@ namespace Ensemble
             string name = registerName.Text;
             string email = registerEmail.Text;
             string password = registerPassword.Password;
-            string info = DBManager.register(email,name,password, null);
+            User user = new User(0, email, name, password, "X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg");
+            string info = dbms.register(user);
             if (info == "success")
             {
-                //Window2 twoPage = new Window2();
-                ////this will open your child window
-                //twoPage.Show();
-                ////this will close parent window. windowOne in this case
-                //this.Close();
+                System.Console.WriteLine("success");
             }
             else if (info == "exist")
             {
@@ -89,5 +91,7 @@ namespace Ensemble
             }
 
         }
+    
+
     }
 }

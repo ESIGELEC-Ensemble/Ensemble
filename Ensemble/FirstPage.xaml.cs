@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using DatabaseService;
+using System.Windows.Controls.Primitives;
 
 namespace Ensemble
 {
@@ -26,10 +27,11 @@ namespace Ensemble
         {
             InitializeComponent();
             userID = uid;
+            string imageURI = dbms.getUserImage(userID);
 
             //show user's photo
             Image userPhoto = new Image();
-            ImageSource imageSource = new BitmapImage(new Uri("X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg"));
+            ImageSource imageSource = new BitmapImage(new Uri(imageURI));
             userPhoto.Source = imageSource;
             userPhoto.Height = 55;
             userPhoto.Margin = new Thickness(30, 4, 0, 10);
@@ -41,20 +43,23 @@ namespace Ensemble
             bar.Children.Add(userPhoto);
 
             //show friends
-            loadFriends();
+            List<User> users = dbms.getMyFriends(userID);
+            loadFriends(users);
 
             ScrollViewer sv = new ScrollViewer();
             sv.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             sv.Content = showFriends;
 
-            loadActivities();
+            //show activities
+            List<Activity> activities = dbms.getAllActivities();
+            loadActivities(activities);
+
+
 
         }
 
-        private void loadFriends()
+        private void loadFriends(List<User> users)
         {
-            List<User> users = dbms.getMyFriends(userID);
-
             if (users.Count == 0)
             {
 
@@ -97,9 +102,12 @@ namespace Ensemble
 
         }
 
-        private void loadActivities()
+        private void loadActivities(List<Activity> activities)
         {
-            List<Activity> activities = dbms.getAllActivities();
+            showActivity.RowDefinitions.Clear();
+            showActivity.ColumnDefinitions.Clear();
+            showActivity.Children.Clear();
+            
 
             if (activities.Count == 0)
             {
@@ -120,7 +128,7 @@ namespace Ensemble
                     ColumnDefinition c3 = new ColumnDefinition();
                     c3.Width = new GridLength(60);
                     showActivity.ColumnDefinitions.Add(c3);
-
+                    
                     Image activityPhoto = new Image();
                     ImageSource imageSource2 = new BitmapImage(new Uri(a.actPicURL));
                     activityPhoto.Source = imageSource2;
@@ -134,6 +142,24 @@ namespace Ensemble
                     lTitle.HorizontalAlignment = HorizontalAlignment.Left;
                     lTitle.VerticalAlignment = VerticalAlignment.Center;
                     lTitle.Margin = new Thickness(0, 0, 0, 0);
+                    lTitle.MouseEnter += (sender, eventArgs) =>
+                    {
+                        lTitle.Foreground = new SolidColorBrush(Colors.Blue);
+                        this.Cursor = Cursors.Hand;
+                    };
+                    lTitle.MouseLeave += (sender, eventArgs) =>
+                    {
+                        lTitle.Foreground = new SolidColorBrush(Colors.Black);
+                        this.Cursor = null;
+                    };
+
+                    lTitle.MouseLeftButtonDown += (sender, eventArgs) =>
+                    {
+                        ActivityDetail activityDetail = new ActivityDetail(userID, a.Id);
+                        activityDetail.Show();
+                        this.Close();
+                    };
+
 
                     Label lTime = new Label();
                     lTime.FontSize = 14;
@@ -156,33 +182,50 @@ namespace Ensemble
                     lMoney.VerticalAlignment = VerticalAlignment.Center;
                     lMoney.Margin = new Thickness(0, 0, 0, 0);
 
+                    User u = dbms.getUserByID(a.created_userID);
                     Label lSponsor = new Label();
                     lSponsor.FontSize = 14;
-                    lSponsor.Content = "Sponser:";
+                    lSponsor.Content = "Sponser:" + u.name;
                     lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
                     lSponsor.VerticalAlignment = VerticalAlignment.Center;
                     lSponsor.Margin = new Thickness(0, 0, 0, 0);
+
 
                     Button btLike = new Button();
                     btLike.Content = "Like";
                     btLike.HorizontalAlignment = HorizontalAlignment.Center;
                     btLike.VerticalAlignment = VerticalAlignment.Center;
-                    btLike.Click += (sender, eventArgs) =>
+                    //check if the current activity is liked or not
+                    if (dbms.hasLiked(userID, a.Id))
                     {
-                        dbms.likeActivity(userID, a.Id);
                         btLike.IsEnabled = false;
-                    };
-
+                    }
+                    else
+                    {
+                        btLike.Click += (sender, eventArgs) =>
+                        {
+                            dbms.likeActivity(userID, a.Id);
+                            btLike.IsEnabled = false;
+                        };
+                    }
 
                     Button btJoin = new Button();
                     btJoin.Content = "Join";
                     btJoin.HorizontalAlignment = HorizontalAlignment.Center;
                     btJoin.VerticalAlignment = VerticalAlignment.Center;
-                    btJoin.Click += (sender, eventArgs) =>
+                    //check if the current activity is joined or not
+                    if (dbms.hasJoined(userID, a.Id))
                     {
-                        dbms.joinActivity(userID, a.Id);
                         btJoin.IsEnabled = false;
-                    };
+                    }
+                    else
+                    {
+                        btJoin.Click += (sender, eventArgs) =>
+                        {
+                            dbms.joinActivity(userID, a.Id);
+                            btJoin.IsEnabled = false;
+                        };
+                    }
 
                     Grid.SetRow(activityPhoto, showActivity.RowDefinitions.Count);
                     Grid.SetRowSpan(activityPhoto, 5);
@@ -239,8 +282,121 @@ namespace Ensemble
                     showActivity.Children.Add(btJoin);
                     showActivity.Children.Add(activityPhoto);
                 }
+
+
             }
 
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            FirstPage mainPage = new FirstPage(userID);
+            mainPage.Show();
+            this.Close();
+        }
+        private void Activitylink_Click(object sender, RoutedEventArgs e)
+        {
+            ActivityManagement_Page activityPage = new ActivityManagement_Page(userID);
+            activityPage.Show();
+            this.Close();
+        }
+        private void Friendlink_Click(object sender, RoutedEventArgs e)
+        {
+            Friends friendsPage = new Friends(userID);
+            friendsPage.Show();
+            this.Close();
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow welPage = new MainWindow();
+            welPage.Show();
+            this.Close();
+        }
+        private void Userinfo_Click(object sender, RoutedEventArgs e)
+        {
+            showUserInfo shwoPage = new showUserInfo(userID);
+            shwoPage.Show();
+            this.Close();
+        }
+
+        private void search(object sender, RoutedEventArgs e)
+        {
+            string c = city.Text;
+            string t = Tag.Text;
+            string key = SearchTermTextBox.Text;
+
+            if (c != "City")
+            {
+                List<Activity> activities = dbms.searchActivityByCity(c);
+                if (activities.Count != 0)
+                {
+                    loadActivities(activities);
+                }
+                else
+                {
+                    showActivity.RowDefinitions.Clear();
+                    showActivity.ColumnDefinitions.Clear();
+                    showActivity.Children.Clear();
+                }
+            }
+            else if (t != "Tag")
+            {
+                List<Activity> activities = dbms.searchActivityByTag(t);
+                if (activities.Count != 0)
+                {
+                    loadActivities(activities);
+                }
+                else
+                {
+                    showActivity.RowDefinitions.Clear();
+                    showActivity.ColumnDefinitions.Clear();
+                    showActivity.Children.Clear();
+                }
+            }
+            else if (key != "")
+            {
+                List<Activity> activities = dbms.searchActivityByKey(key);
+                if (activities.Count != 0)
+                {
+                    loadActivities(activities);
+                }
+                else
+                {
+                    showActivity.RowDefinitions.Clear();
+                    showActivity.ColumnDefinitions.Clear();
+                    showActivity.Children.Clear();
+                }
+            }
+        }
+
+        private void ascendByTime(object sender, RoutedEventArgs e)
+        {
+            List<Activity> activities = dbms.getActAscend();
+            if (activities.Count != 0)
+            {
+                loadActivities(activities);
+            }
+            else
+            {
+                showActivity.RowDefinitions.Clear();
+                showActivity.ColumnDefinitions.Clear();
+                showActivity.Children.Clear();
+            }
+        }
+
+        private void descendByTime(object sender, RoutedEventArgs e)
+        {
+            List<Activity> activities = dbms.getActDescend();
+            if (activities.Count != 0)
+            {
+                loadActivities(activities);
+            }
+            else
+            {
+                showActivity.RowDefinitions.Clear();
+                showActivity.ColumnDefinitions.Clear();
+                showActivity.Children.Clear();
+            }
         }
     
         
