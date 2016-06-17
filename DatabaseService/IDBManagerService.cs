@@ -40,7 +40,7 @@ namespace DatabaseService
         bool createActivity(Activity a);
 
         [OperationContract]
-        bool deleteActivity(string activityID);
+        bool deleteActivity(int activityID);
 
         [OperationContract]
         List<Activity> getAllActivities();
@@ -114,6 +114,11 @@ namespace DatabaseService
         [OperationContract]
         bool isFollowed(int userID, int friendID);
 
+        [OperationContract]
+        int getTotalJoinByAID(int aid);
+
+        [OperationContract]
+        int getTotalLikeByAID(int aid);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

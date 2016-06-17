@@ -127,30 +127,35 @@ namespace Ensemble
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             FirstPage mainPage = new FirstPage(userID);
+            mainPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             mainPage.Show();
             this.Close();
         }
         private void Activitylink_Click(object sender, RoutedEventArgs e)
         {
             ActivityManagement_Page activityPage = new ActivityManagement_Page(userID);
+            activityPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             activityPage.Show();
             this.Close();
         }
         private void Friendlink_Click(object sender, RoutedEventArgs e)
         {
             Friends friendsPage = new Friends(userID);
+            friendsPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             friendsPage.Show();
             this.Close();
         }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             MainWindow welPage = new MainWindow();
+            welPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             welPage.Show();
             this.Close();
         }
         private void Userinfo_Click(object sender, RoutedEventArgs e)
         {
             showUserInfo shwoPage = new showUserInfo(userID);
+            shwoPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             shwoPage.Show();
             this.Close();
         }

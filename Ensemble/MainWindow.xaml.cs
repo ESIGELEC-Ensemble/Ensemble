@@ -21,28 +21,29 @@ namespace Ensemble
     /// </summary>
     public partial class MainWindow : Window
     {
-        int userID = -1;
-        DBManagerService dbms = new DBManagerService();
 
+        DBManagerService dbms = new DBManagerService();
+        int userID = -1;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            ensemble.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            //string info = DBManager.login(email, password);
             string email = loginEmail.Text;
             string password = loginPassword.Password;
             userID = dbms.getUID(email);
-
-            //string info = DBManager.login(email, password);
-            DBManagerService dbs = new DBManagerService();
-            string info = dbs.login(email, password);
+            string info = dbms.login(email, password);
 
             if (info == "loged_in")
             {
                 FirstPage c = new FirstPage(userID);
+                c.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 c.Show();
                 this.Close();
 
@@ -79,6 +80,11 @@ namespace Ensemble
             string info = dbms.register(user);
             if (info == "success")
             {
+                userID = dbms.getUID(email);
+                FirstPage c = new FirstPage(userID);
+                c.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                c.Show();
+                this.Close();
                 System.Console.WriteLine("success");
             }
             else if (info == "exist")

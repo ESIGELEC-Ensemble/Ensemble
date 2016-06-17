@@ -28,6 +28,7 @@ namespace Ensemble
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             FirstPage mainPage = new FirstPage(userID);
+            mainPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             mainPage.Show();
             this.Close();
         }
@@ -35,24 +36,28 @@ namespace Ensemble
         private void Activitylink_Click(object sender, RoutedEventArgs e)
         {
             ActivityManagement_Page activityPage = new ActivityManagement_Page(userID);
+            activityPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             activityPage.Show();
             this.Close();
         }
         private void Friendlink_Click(object sender, RoutedEventArgs e)
         {
             Friends friendsPage = new Friends(userID);
+            friendsPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             friendsPage.Show();
             this.Close();
         }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             MainWindow welPage = new MainWindow();
+            welPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             welPage.Show();
             this.Close();
         }
         private void Userinfo_Click(object sender, RoutedEventArgs e)
         {
             showUserInfo shwoPage = new showUserInfo(userID);
+            shwoPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             shwoPage.Show();
             this.Close();
         }
@@ -119,12 +124,16 @@ namespace Ensemble
             showActivity.ColumnDefinitions.Add(c1);
 
             ColumnDefinition c2 = new ColumnDefinition();
-            c2.Width = new GridLength(460);
+            c2.Width = new GridLength(380);
             showActivity.ColumnDefinitions.Add(c2);
 
             ColumnDefinition c3 = new ColumnDefinition();
-            c3.Width = new GridLength(60);
+            c3.Width = new GridLength(30);
             showActivity.ColumnDefinitions.Add(c3);
+
+            ColumnDefinition c4 = new ColumnDefinition();
+            c4.Width = new GridLength(110);
+            showActivity.ColumnDefinitions.Add(c4);
 
             Image activityPhoto = new Image();
             ImageSource imageSource3 = new BitmapImage(new Uri(activity.actPicURL));
@@ -135,38 +144,76 @@ namespace Ensemble
 
             Label lTitle = new Label();
             lTitle.FontSize = 14;
-            lTitle.Content = "Title:" + activity.name;
+            lTitle.Content = "Title: " + activity.name;
             lTitle.HorizontalAlignment = HorizontalAlignment.Left;
             lTitle.VerticalAlignment = VerticalAlignment.Center;
             lTitle.Margin = new Thickness(0, 0, 0, 0);
 
             Label lTime = new Label();
             lTime.FontSize = 14;
-            lTime.Content = "Time:" ;
+            lTime.Content = "Time: " + activity.start_date;
             lTime.HorizontalAlignment = HorizontalAlignment.Left;
             lTime.VerticalAlignment = VerticalAlignment.Center;
             lTime.Margin = new Thickness(0, 0, 0, 0);
 
             Label lLocation = new Label();
             lLocation.FontSize = 14;
-            lLocation.Content = "Location:" + activity.location;
+            lLocation.Content = "Location: " + activity.location;
             lLocation.HorizontalAlignment = HorizontalAlignment.Left;
             lLocation.VerticalAlignment = VerticalAlignment.Center;
             lLocation.Margin = new Thickness(0, 0, 0, 0);
 
             Label lMoney = new Label();
             lMoney.FontSize = 14;
-            lMoney.Content = "Budget:" + activity.budget;
+            lMoney.Content = "Budget: " + activity.budget;
             lMoney.HorizontalAlignment = HorizontalAlignment.Left;
             lMoney.VerticalAlignment = VerticalAlignment.Center;
             lMoney.Margin = new Thickness(0, 0, 0, 0);
 
             Label lSponsor = new Label();
             lSponsor.FontSize = 14;
-            lSponsor.Content = "Sponser:" + activity.created_userID;
+            lSponsor.Content = "Sponser: " + activity.created_userID;
             lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
             lSponsor.VerticalAlignment = VerticalAlignment.Center;
             lSponsor.Margin = new Thickness(0, 0, 0, 0);
+
+            int numLike = dbms.getTotalLikeByAID(this.actID);
+            Label lLikeNum = new Label();
+            lLikeNum.FontSize = 13;
+            lLikeNum.Content = "Total Like: " + numLike;
+            lLikeNum.HorizontalAlignment = HorizontalAlignment.Left;
+            lLikeNum.VerticalAlignment = VerticalAlignment.Center;
+            lLikeNum.Margin = new Thickness(0, 0, 0, 0);
+
+            int numJoin = dbms.getTotalJoinByAID(this.actID);
+            Label lJoinNum = new Label();
+            lJoinNum.FontSize = 13;
+            lJoinNum.Content = "Total Like: " + numJoin;
+            lJoinNum.HorizontalAlignment = HorizontalAlignment.Left;
+            lJoinNum.VerticalAlignment = VerticalAlignment.Center;
+            lJoinNum.Margin = new Thickness(0, 0, 0, 0);
+
+            Label lIntroTitle = new Label();
+            lIntroTitle.FontSize = 14;
+            lIntroTitle.Content = "Introduction:";
+            lIntroTitle.HorizontalAlignment = HorizontalAlignment.Right;
+            lIntroTitle.VerticalAlignment = VerticalAlignment.Top;
+            lIntroTitle.Margin = new Thickness(0, 0, 0, 0);
+
+            TextBox lIntroduction = new TextBox();
+            lIntroduction.FontSize = 14;
+            lIntroduction.Height = 100;
+            lIntroduction.Width = 510;
+            lIntroduction.IsReadOnly = true;
+            lIntroduction.TextWrapping = TextWrapping.Wrap;
+            lIntroduction.AcceptsReturn = true;
+            lIntroduction.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+            lIntroduction.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            lIntroduction.Text = activity.introduction;
+            lIntroduction.HorizontalAlignment = HorizontalAlignment.Left;
+            lIntroduction.VerticalAlignment = VerticalAlignment.Top;
+            lIntroduction.Margin = new Thickness(0, 0, 0, 0);
+
 
             Button btLike = new Button();
             btLike.Content = "Like";
@@ -230,6 +277,9 @@ namespace Ensemble
             Grid.SetRow(lMoney, 3);
             Grid.SetColumn(lMoney, 1);
 
+            Grid.SetRow(lLikeNum, 3);
+            Grid.SetColumn(lLikeNum, 3);
+
             Grid.SetRow(btLike, 3);
             Grid.SetColumn(btLike, 2);
             RowDefinition row4 = new RowDefinition();
@@ -239,6 +289,9 @@ namespace Ensemble
             Grid.SetRow(lSponsor, 4);
             Grid.SetColumn(lSponsor, 1);
 
+            Grid.SetRow(lJoinNum, 4);
+            Grid.SetColumn(lJoinNum, 3);
+
             Grid.SetRow(btJoin, 4);
             Grid.SetColumn(btJoin, 2);
 
@@ -246,10 +299,20 @@ namespace Ensemble
             row5.Height = new GridLength(30);
             showActivity.RowDefinitions.Add(row5);
 
+            Grid.SetRow(lIntroduction, 5);
+            Grid.SetColumn(lIntroduction, 1);
+            Grid.SetColumnSpan(lIntroduction, 3);
+
+            Grid.SetRow(lIntroTitle, 5);
+            Grid.SetColumn(lIntroTitle, 0);
 
             RowDefinition row6 = new RowDefinition();
-            row6.Height = new GridLength(10);
+            row6.Height = new GridLength(130);
             showActivity.RowDefinitions.Add(row6);
+
+            RowDefinition row7 = new RowDefinition();
+            row7.Height = new GridLength(30);
+            showActivity.RowDefinitions.Add(row7);
 
             showActivity.Children.Add(lTitle);
             showActivity.Children.Add(lTime);
@@ -259,54 +322,24 @@ namespace Ensemble
             showActivity.Children.Add(btLike);
             showActivity.Children.Add(btJoin);
             showActivity.Children.Add(activityPhoto);
+            showActivity.Children.Add(lLikeNum);
+            showActivity.Children.Add(lJoinNum);
+            showActivity.Children.Add(lIntroduction);
+            showActivity.Children.Add(lIntroTitle);
 
-            //show introduction
-            Label lIntroduction = new Label();
-            lIntroduction.FontSize = 18;
-            lIntroduction.Content = " " + "Introduction:";
-            lIntroduction.HorizontalAlignment = HorizontalAlignment.Left;
-            lIntroduction.VerticalAlignment = VerticalAlignment.Center;
-            lIntroduction.Margin = new Thickness(0, 0, 0, 0);
-
-
-            Grid.SetRow(lIntroduction, 0);
-            Grid.SetColumn(lIntroduction, 0);
-
-            RowDefinition row7 = new RowDefinition();
-            row7.Height = new GridLength(30);
-            introduction.RowDefinitions.Add(row7);
-
-
-            TextBlock lIntroductionContent = new TextBlock();
-            lIntroductionContent.FontSize = 14;
-            lIntroductionContent.TextWrapping = TextWrapping.Wrap;
-            lIntroductionContent.Text = "    "+ activity.introduction;
-            lIntroductionContent.HorizontalAlignment = HorizontalAlignment.Left;
-            lIntroductionContent.VerticalAlignment = VerticalAlignment.Center;
-            lIntroductionContent.Margin = new Thickness(0, 0, 0, 0);
-
-            Grid.SetRow(lIntroductionContent, 1);
-            Grid.SetColumn(lIntroductionContent, 0);
-
-            RowDefinition row8 = new RowDefinition();
-            row8.Height = new GridLength(30);
-            introduction.RowDefinitions.Add(row8);
-
-            introduction.Children.Add(lIntroduction);
-            introduction.Children.Add(lIntroductionContent);
-
+            
             
             ////show comments
             List<Comment> comments = dbms.getActComment(activity.Id);
             foreach(Comment c in comments)
             {
-                ColumnDefinition c4 = new ColumnDefinition();
-                c4.Width = new GridLength(150);
-                comment.ColumnDefinitions.Add(c4);
-
                 ColumnDefinition c5 = new ColumnDefinition();
-                c5.Width = new GridLength(500);
+                c5.Width = new GridLength(150);
                 comment.ColumnDefinitions.Add(c5);
+
+                ColumnDefinition c6 = new ColumnDefinition();
+                c6.Width = new GridLength(500);
+                comment.ColumnDefinitions.Add(c6);
 
                 Label lCommentTitle = new Label();
                 lCommentTitle.FontSize = 14;

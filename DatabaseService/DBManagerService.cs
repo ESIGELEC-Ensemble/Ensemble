@@ -299,7 +299,7 @@ namespace DatabaseService
             return true;
         }
 
-        public bool deleteActivity(string activityID)
+        public bool deleteActivity(int activityID)
         {
             MySqlConnection conn = this.connect();
             try
@@ -1017,7 +1017,6 @@ namespace DatabaseService
                 while (reader.Read())
                 {
                     string name = reader.GetString("act_name");
-                    int id = reader.GetInt32("id");
                     DateTime act_date = reader.GetDateTime("act_date");
                     string actStartTime = reader.GetString("act_startTime");
                     string actEndTime = reader.GetString("act_endTime");
@@ -1028,7 +1027,7 @@ namespace DatabaseService
                     string location = reader.GetString("act_location");
                     string tag = reader.GetString("tag");
                     string picURL = reader.GetString("picURL");
-                    act = new Activity(name, act_date, actStartTime, actEndTime, budget, intro, creatUID, city, location, picURL, tag);
+                    act = new Activity(actID, name, act_date, actStartTime, actEndTime, budget, intro, creatUID, city, location, picURL, tag);
                 }
             }
             this.disConnect(conn);
@@ -1136,7 +1135,6 @@ namespace DatabaseService
             return isFollow;
         }
 
-
         public List<Activity> getMyJoinedActivities(int userID)
         {
             List<Activity> acts = new List<Activity>();
@@ -1155,8 +1153,8 @@ namespace DatabaseService
                         while (reader.Read())
                         {
                             int actID = reader.GetInt32("actId");
-                            Activity a = this.getActByID(actID);
-                            acts.Add(a);
+                            Activity actitity = this.getActByID(actID);
+                            acts.Add(actitity);
                         }
                     }
                 }
@@ -1168,9 +1166,65 @@ namespace DatabaseService
             this.disConnect(conn);
             return acts;
         }
+
+        public int getTotalJoinByAID(int aid)
+        {
+            int total = 0;
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM joined_table WHERE actId = @aid";
+                    cmd.Parameters.AddWithValue("@aid", aid);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            total++;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+            return total;
+        }
+
+        public int getTotalLikeByAID(int aid)
+        {
+            int total = 0;
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM liked_table WHERE activityId = @aid";
+                    cmd.Parameters.AddWithValue("@aid", aid);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            total++;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            this.disConnect(conn);
+            return total;
+        }
         
 
-
-        
     }
 }
