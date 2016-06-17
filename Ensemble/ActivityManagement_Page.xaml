@@ -24,7 +24,7 @@
                 </Hyperlink>
             </Label>
 
-            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
+            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script">
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
 
@@ -77,7 +77,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="    My Activities" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFFB9B6D" />
-                        <Button x:Name="btCreate" Content="Create a new one" Background="#FF92C740"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="1" Click="btCreate_Click"/>
+                        <Button x:Name="btCreate" Content="Create a new one" Background="#FF92C740"  Foreground="White" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="1" Click="btCreate_Click" />
                       
                     </Grid>
                 </Border>
