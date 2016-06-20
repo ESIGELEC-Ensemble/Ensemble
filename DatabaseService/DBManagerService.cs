@@ -32,21 +32,6 @@ namespace DatabaseService
             return composite;
         }
 
-        //public int connect()
-        //{
-        //    try
-        //    {
-        //        ReturnCode = 1;
-        //        conn.Open();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ReturnCode = 0;
-        //        System.Console.WriteLine("Connection goes wrong: " + e.Message);
-        //    }
-        //    return ReturnCode;
-        //}
-
         private MySqlConnection connect()
         {
             MySqlConnection conn = new MySqlConnection("Server=localhost;Database=ensemble;Uid=root;Pwd=;");
@@ -307,7 +292,11 @@ namespace DatabaseService
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "DELETE FROM activity WHERE id=@act_id";
+                    string query = "DELETE FROM activity WHERE id=@act_id;";
+                    query += "DELETE FROM comment_table WHERE activityId=@act_id;";
+                    query += "DELETE FROM liked_table WHERE activityId=@act_id;";
+                    query += "DELETE FROM joined_table WHERE actId=@act_id;";
+                    cmd.CommandText = query;
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@act_id", activityID);
                     cmd.ExecuteNonQuery();
