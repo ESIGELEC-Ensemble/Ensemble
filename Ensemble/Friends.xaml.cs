@@ -198,21 +198,13 @@ namespace Ensemble
 
                 Label l1 = new Label();
                 l1.FontSize = 14;
-                l1.Content = "Name:" + friend.name;
+                l1.Content = "Name: " + friend.name;
                 l1.Margin = new Thickness(0, 0, 0, 0);
 
                 Label l2 = new Label();
                 l2.FontSize = 14;
-                l2.Content = "Joined activities:";
-                List<Activity> activities = dbms.getMyJoinedActivities(friend.id);
-                if (activities.Count > 1)
-                {
-                    l2.Content += activities[0].name + "..."; 
-                }
-                else if (activities.Count == 1)
-                {
-                    l2.Content += activities[0].name;
-                }
+
+
 
                 Button b1 = new Button();
                 if (dbms.isFollowed(userID, friend.id))
@@ -222,7 +214,7 @@ namespace Ensemble
                     b1.Margin = new Thickness(0, 0, 0, 0);
                     b1.Height = 22;
                     b1.Width = 100;
-                    b1.Background = Brushes.Tomato;
+                    b1.Background = Brushes.LightPink;
                     b1.Foreground = Brushes.White;
                     b1.Click += (sender, eventArgs) =>
                     {
@@ -237,7 +229,7 @@ namespace Ensemble
                     b1.Margin = new Thickness(0, 0, 0, 0);
                     b1.Height = 20;
                     b1.Width = 100;
-                    b1.Background = Brushes.Tomato;
+                    b1.Background = Brushes.LightPink;
                     b1.Foreground = Brushes.White;
                     b1.Click += (sender, eventArgs) =>
                     {
@@ -245,7 +237,6 @@ namespace Ensemble
                         b1.IsEnabled = false;
                     };
                 }
-
 
 
                 Grid.SetRow(l1, showInfo.RowDefinitions.Count);
@@ -262,6 +253,37 @@ namespace Ensemble
 
                 Grid.SetRow(b1, showInfo.RowDefinitions.Count);
                 Grid.SetColumn(b1, 0);
+
+                List<Activity> activities = dbms.getMyJoinedActivities(friend.id);
+
+                if (activities.Count >= 1)
+                {
+                    l2.Content = "Latest joined: " + activities[activities.Count - 1];
+                    Button btMore = new Button();
+                    btMore.Content = "More joined activities";
+                    btMore.Click += (s, e) =>
+                    {
+                        ShowFriendsActivities showFriendACT = new ShowFriendsActivities(userID,friend.id);
+                        showFriendACT.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                        showFriendACT.Show();
+                        this.Close();
+                    };
+                    btMore.HorizontalAlignment = HorizontalAlignment.Left;
+                    btMore.Margin = new Thickness(130, 0, 0, 0);
+                    btMore.Height = 22;
+                    btMore.Width = 150;
+                    btMore.Background = Brushes.LightBlue;
+                    btMore.Foreground = Brushes.White;
+
+                    Grid.SetRow(btMore, showInfo.RowDefinitions.Count);
+                    Grid.SetColumn(btMore, 0);
+                    showInfo.Children.Add(btMore);
+                }
+                else
+                {
+                    l2.Content = "No joined activity";
+                }
+
                 RowDefinition rowDef4 = new RowDefinition();
                 rowDef4.Height = new GridLength(30);
                 showInfo.RowDefinitions.Add(rowDef4);
@@ -269,6 +291,7 @@ namespace Ensemble
                 showInfo.Children.Add(l1);
                 showInfo.Children.Add(l2);
                 showInfo.Children.Add(b1);
+                
 
             }
 

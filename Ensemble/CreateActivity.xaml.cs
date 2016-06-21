@@ -26,7 +26,7 @@ namespace Ensemble
 
         int userID = -1;
 
-        string profileImage = "X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg";
+        string profileImage = DBManagerService.defaultProfileImage;
 
         public CreateActivity(int uid)
         {

@@ -16,6 +16,9 @@ namespace DatabaseService
         string GetData(int value);
 
         [OperationContract]
+        string getDefaultProfileImage();
+
+        [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         [OperationContract]
@@ -119,6 +122,24 @@ namespace DatabaseService
 
         [OperationContract]
         int getTotalLikeByAID(int aid);
+
+        [OperationContract]
+        List<User> getAllUsersExceptMe(int uid);
+
+        [OperationContract]
+        User getUserObject(int t_id, string t_email, string t_name, string t_password, string t_photoURL);
+
+        [OperationContract]
+        Activity getActivityObeject1(string t_name, DateTime t_date, string t_start_time, string t_end_time, int t_budget, string t_intro,
+            int t_uid, string t_city, string t_location, string url, string t_tag);
+
+        [OperationContract]
+        Activity getActivityObeject2(int id, string t_name, DateTime t_date, string t_start_time, string t_end_time, int t_budget, string t_intro,
+            int t_uid, string t_city, string t_location, string url, string t_tag);
+
+        [OperationContract]
+        Comment getCommentObject(int uID, int aID, DateTime cd, string comm);
+
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
@@ -232,7 +253,6 @@ namespace DatabaseService
             tag = t_tag;
         }
 
-
         public Activity(int t_id, string t_name, DateTime t_date, string t_start_time, string t_end_time, int t_budget, string t_intro,
             int t_uid, string t_city, string t_location, string url, string t_tag)
         {
@@ -290,7 +310,6 @@ namespace DatabaseService
             private set;
         }
 
-
         public User(int t_id, string t_email, string t_name, string t_password, string t_photoURL)
         {
             id = t_id;
@@ -330,6 +349,5 @@ namespace DatabaseService
     
 
     }
-
 
 }

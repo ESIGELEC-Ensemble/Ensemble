@@ -14,13 +14,12 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using DatabaseService;
-
 namespace Ensemble
 {
     /// <summary>
-    /// Interaction logic for showUserInfo.xaml
+    /// Interaction logic for ShowFriendInfo.xaml
     /// </summary>
-    public partial class showUserInfo : Window
+    public partial class ShowFriendInfo : Window
     {
         int userID = -1;
         DBManagerService dbms = new DBManagerService();
@@ -63,7 +62,7 @@ namespace Ensemble
             this.Close();
         }
 
-        public showUserInfo(int uid)
+        public ShowFriendInfo(int uid, int fid)
         {
             InitializeComponent();
             this.userID = uid;
@@ -76,7 +75,7 @@ namespace Ensemble
             c2.Width = new GridLength(300);
             userInfo.ColumnDefinitions.Add(c2);
 
-            User u = dbms.getUserByID(userID);
+            User u = dbms.getUserByID(fid);
 
             Image userPhoto = new Image();
             ImageSource imageSource = new BitmapImage(new Uri(u.photoURL));
@@ -87,7 +86,7 @@ namespace Ensemble
 
             Label lName = new Label();
             lName.FontSize = 14;
-            lName.Content = "Name: " +u.name;
+            lName.Content = "Name: " + u.name;
             lName.HorizontalAlignment = HorizontalAlignment.Left;
             lName.VerticalAlignment = VerticalAlignment.Center;
             lName.Margin = new Thickness(0, 0, 0, 0);
@@ -100,15 +99,31 @@ namespace Ensemble
             lEmail.Margin = new Thickness(0, 0, 0, 0);
 
             Button btEdit = new Button();
-            btEdit.Content = "Edit";
             btEdit.Background = Brushes.LightBlue;
             btEdit.Width = 130;
             btEdit.Height = 25;
             btEdit.FontSize = 14;
-            btEdit.Click += new System.Windows.RoutedEventHandler(editButton_Click);
             btEdit.Margin = new Thickness(20, 0, 0, 0);
             btEdit.HorizontalAlignment = HorizontalAlignment.Left;
             btEdit.VerticalAlignment = VerticalAlignment.Center;
+            if (dbms.isFollowed(userID, fid))
+            {
+                btEdit.Content = "unfollow";
+                btEdit.Click += (sender, eventArgs) =>
+                {
+                    dbms.unfollow(userID, fid);
+                    btEdit.IsEnabled = false;
+                };
+            }
+            else
+            {
+                btEdit.Content = "follow";
+                btEdit.Click += (sender, eventArgs) =>
+                {
+                    dbms.followFriend(userID, fid);
+                    btEdit.IsEnabled = false;
+                };
+            }
 
             Grid.SetRow(userPhoto, 0);
             Grid.SetRowSpan(userPhoto, 2);
@@ -146,14 +161,6 @@ namespace Ensemble
             userInfo.Children.Add(lEmail);
             userInfo.Children.Add(btEdit);
 
-        }
-
-        protected void editButton_Click(object sender, EventArgs e)
-        {
-            EditUserInfo editPage = new EditUserInfo(userID);
-            editPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            editPage.Show();
-            this.Close();
         }
     }
 }

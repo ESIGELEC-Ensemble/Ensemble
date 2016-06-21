@@ -1,7 +1,7 @@
-﻿<Window x:Class="Ensemble.EditUserInfo"
+﻿<Window x:Class="Ensemble.ShowFriendInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="UserInfo" Height="650" Width="900">
+        Title="ShowFriendInfo" Height="650" Width="900">
     <Grid>
         <DockPanel LastChildFill="True">
             <Grid x:Name="bar" Height="58" Background="YellowGreen" DockPanel.Dock="Top">
@@ -24,7 +24,7 @@
                     </Hyperlink>
                 </Label>
 
-                <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script" >
+                <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script">
                     <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
 
@@ -57,7 +57,6 @@
                     </ComboBoxItem>
                 </ComboBox>
 
-
             </Grid>
 
             <!-- top 2 area-->
@@ -76,43 +75,17 @@
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Green" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0" >
 
-                        <Grid DockPanel.Dock="Top" Margin="0,0,0,0"   >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="300" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
+                        <Grid x:Name="userInfo" DockPanel.Dock="Top" Margin="0,0,0,0"   >
 
-                            </Grid.RowDefinitions>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="Name:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="Old  Password:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="New Password:" FontSize="18"/>
-                            <TextBlock  HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Text="Picture:" FontSize="18" Margin="0,6,0,0" />
-
-                            <TextBox Name="name" Grid.Column="3"  Grid.Row="0"  HorizontalAlignment="Left"   TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <PasswordBox Name="oldPassword" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Left"   VerticalAlignment="Center" Width="280" Height="24" Margin="10,6,0,10"/>
-                            <PasswordBox Name="newPassword" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Left"   VerticalAlignment="Center" Width="280" Height="25" Margin="10,5,0,5"/>
-                            <Button  Grid.Column="3"  Grid.Row="3" Background="White" Content="Upload file" Foreground="Black" HorizontalAlignment="Left" Margin="10,3,0,0"  VerticalAlignment="Top" Width="168" Height="27" Click="Button_Click"/>
-                            <Label Name="path" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="183,5,0,7" VerticalAlignment="Center" Height="auto" Width="auto" FontSize="14" Content="image"/>
-                            <Button Content="Submit" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="center" Margin="10,10,0,0" Width="146" Height="30" Background="#FFC5E5F9" Click="submit" />
-                            
                         </Grid>
 
 
                     </Border>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Edit My Info" VerticalAlignment="Top" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFD4D4D4"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="My Info" VerticalAlignment="Top" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFD4D4D4"/>
 
                 </Grid>
             </Border>
+
         </DockPanel>
     </Grid>
 </Window>

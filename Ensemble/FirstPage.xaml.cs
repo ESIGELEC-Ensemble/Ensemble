@@ -43,7 +43,7 @@ namespace Ensemble
             bar.Children.Add(userPhoto);
 
             //show friends
-            List<User> users = dbms.getMyFriends(userID);
+            List<User> users = dbms.getAllUsersExceptMe(userID);
             loadFriends(users);
 
             ScrollViewer sv = new ScrollViewer();
@@ -80,6 +80,24 @@ namespace Ensemble
                     l1.Content = u.name;
                     l1.HorizontalAlignment = HorizontalAlignment.Center;
                     l1.Margin = new Thickness(0, 0, 0, 0);
+                    l1.MouseEnter += (sender, eventArgs) =>
+                    {
+                        l1.Foreground = new SolidColorBrush(Colors.Blue);
+                        this.Cursor = Cursors.Hand;
+                    };
+                    l1.MouseLeave += (sender, eventArgs) =>
+                    {
+                        l1.Foreground = new SolidColorBrush(Colors.Black);
+                        this.Cursor = null;
+                    };
+
+                    l1.MouseLeftButtonDown += (sender, eventArgs) =>
+                    {
+                        ShowFriendInfo friendDetail = new ShowFriendInfo(userID,u.id);
+                        friendDetail.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                        friendDetail.Show();
+                        this.Close();
+                    };
 
                     Grid.SetRow(image1, showFriends.RowDefinitions.Count);
                     Grid.SetColumn(image1, 0);
@@ -138,7 +156,7 @@ namespace Ensemble
 
                     Label lTitle = new Label();
                     lTitle.FontSize = 14;
-                    lTitle.Content = "Title:" + a.name;
+                    lTitle.Content = "Title: " + a.name;
                     lTitle.HorizontalAlignment = HorizontalAlignment.Left;
                     lTitle.VerticalAlignment = VerticalAlignment.Center;
                     lTitle.Margin = new Thickness(0, 0, 0, 0);
@@ -164,21 +182,21 @@ namespace Ensemble
 
                     Label lTime = new Label();
                     lTime.FontSize = 14;
-                    lTime.Content = "Date:" + a.start_date + " Start at:" + a.start_time + " End at:" + a.end_time;
+                    lTime.Content = "Date: " + a.start_date + " Start at:" + a.start_time + " End at:" + a.end_time;
                     lTime.HorizontalAlignment = HorizontalAlignment.Left;
                     lTime.VerticalAlignment = VerticalAlignment.Center;
                     lTime.Margin = new Thickness(0, 0, 0, 0);
 
                     Label lLocation = new Label();
                     lLocation.FontSize = 14;
-                    lLocation.Content = "Location:" + a.location;
+                    lLocation.Content = "Location: " + a.location;
                     lLocation.HorizontalAlignment = HorizontalAlignment.Left;
                     lLocation.VerticalAlignment = VerticalAlignment.Center;
                     lLocation.Margin = new Thickness(0, 0, 0, 0);
 
                     Label lMoney = new Label();
                     lMoney.FontSize = 14;
-                    lMoney.Content = "Budget:" + a.budget;
+                    lMoney.Content = "Budget: " + a.budget;
                     lMoney.HorizontalAlignment = HorizontalAlignment.Left;
                     lMoney.VerticalAlignment = VerticalAlignment.Center;
                     lMoney.Margin = new Thickness(0, 0, 0, 0);
@@ -186,7 +204,7 @@ namespace Ensemble
                     User u = dbms.getUserByID(a.created_userID);
                     Label lSponsor = new Label();
                     lSponsor.FontSize = 14;
-                    lSponsor.Content = "Sponser:" + u.name;
+                    lSponsor.Content = "Sponser: " + u.name;
                     lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
                     lSponsor.VerticalAlignment = VerticalAlignment.Center;
                     lSponsor.Margin = new Thickness(0, 0, 0, 0);

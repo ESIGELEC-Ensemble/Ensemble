@@ -71,9 +71,9 @@
             <Button x:Name="searchButton" Background="YellowGreen" Content="Search" Foreground="White" Grid.Column="3" HorizontalAlignment="Left" Margin="187,11,0,0" VerticalAlignment="Top" Width="75" Height="34"/>
 
             <!--input user's picture from database here-->
-          
 
-            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" >
+
+            <ComboBox x:Name="userAccount" Background="Yellow" Grid.Column="4"   HorizontalAlignment="Left"  Margin="114,10,0,0" VerticalAlignment="Top" Width="auto" Height="33" FontSize="16" FontFamily="Segoe Script" >
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="More"  
             		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
                 <ComboBoxItem Background="YellowGreen" Foreground="White"

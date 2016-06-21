@@ -14,6 +14,13 @@ namespace DatabaseService
     {
         //private MySqlConnection conn = new MySqlConnection("Server=localhost;Database=ensemble;Uid=root;Pwd=;");
 
+        public static string defaultProfileImage = "X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg";
+
+        public string getDefaultProfileImage()
+        {
+            return "X:\\C#PROJECT\\Ensemble\\Ensemble\\Images\\profile.jpg";
+        }
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -1213,7 +1220,61 @@ namespace DatabaseService
             this.disConnect(conn);
             return total;
         }
-        
 
+        public List<User> getAllUsersExceptMe(int uid)
+        {
+            List<User> users = new List<User>();
+            MySqlConnection conn = this.connect();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "SELECT * FROM user WHERE id <> @uid";
+                    cmd.Parameters.AddWithValue("@uid", uid);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string email = reader.GetString("email");
+                        string password = reader.GetString("password");
+                        string name = reader.GetString("name");
+                        string photo = reader.GetString("photo");
+                        User user = new User(id, email, name, password, photo);
+                        users.Add(user);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Get data wrong!" + e.Message);
+            }
+
+            this.disConnect(conn);
+            return users;
+        }
+
+
+        public User getUserObject(int t_id, string t_email, string t_name, string t_password, string t_photoURL)
+        {
+            return new User(t_id, t_email, t_name, t_password, t_photoURL);
+        }
+
+        public Activity getActivityObeject1(string t_name, DateTime t_date, string t_start_time, string t_end_time, int t_budget, string t_intro, int t_uid, string t_city, string t_location, string url, string t_tag)
+        {
+            return new Activity( t_name,  t_date,  t_start_time,  t_end_time,  t_budget,  t_intro,  t_uid,  t_city,  t_location,  url,  t_tag);
+        }
+
+        public Activity getActivityObeject2(int id, string t_name, DateTime t_date, string t_start_time, string t_end_time, int t_budget, string t_intro, int t_uid, string t_city, string t_location, string url, string t_tag)
+        {
+            return new Activity(id, t_name, t_date, t_start_time, t_end_time, t_budget, t_intro, t_uid, t_city, t_location, url, t_tag);
+        }
+
+        public Comment getCommentObject(int uID, int aID, DateTime cd, string comm)
+        {
+            return new Comment(uID, aID, cd, comm);
+        }
     }
 }

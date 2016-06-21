@@ -13,12 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DatabaseService;
 
+
 namespace Ensemble
 {
     /// <summary>
-    /// Interaction logic for ActivityManagement_Page.xaml
+    /// Interaction logic for ShowFriendsActivities.xaml
     /// </summary>
-    public partial class ActivityManagement_Page : Window
+    public partial class ShowFriendsActivities : Window
     {
         int userID = -1;
         DBManagerService dbms = new DBManagerService();
@@ -59,12 +60,11 @@ namespace Ensemble
             this.Close();
         }
 
-        public ActivityManagement_Page(int uid)
+        public ShowFriendsActivities(int uid, int fid)
         {
             InitializeComponent();
             userID = uid;
             string imageURI = dbms.getUserImage(uid);
-
 
             Image userPhoto = new Image();
             ImageSource imageSource = new BitmapImage(new Uri(imageURI));
@@ -78,7 +78,9 @@ namespace Ensemble
             Grid.SetColumn(userPhoto, 4);
             bar.Children.Add(userPhoto);
 
-            List<Activity> activities = dbms.getMyActivities(userID);
+
+
+            List<Activity> activities = dbms.getMyActivities(fid);
 
             foreach (Activity activity in activities)
             {
@@ -108,6 +110,7 @@ namespace Ensemble
                 lTitle.VerticalAlignment = VerticalAlignment.Center;
                 lTitle.Margin = new Thickness(0, 0, 0, 0);
 
+                /*
                 lTitle.MouseEnter += (sender, eventArgs) =>
                 {
                     lTitle.Foreground = new SolidColorBrush(Colors.Blue);
@@ -126,6 +129,7 @@ namespace Ensemble
                     activityDetail.Show();
                     this.Close();
                 };
+                 */
 
                 Label lTime = new Label();
                 lTime.FontSize = 14;
@@ -156,19 +160,6 @@ namespace Ensemble
                 lSponsor.HorizontalAlignment = HorizontalAlignment.Left;
                 lSponsor.VerticalAlignment = VerticalAlignment.Center;
                 lSponsor.Margin = new Thickness(0, 0, 0, 0);
-
-                Button btDelete = new Button();
-                btDelete.Content = "Delete";
-                btDelete.HorizontalAlignment = HorizontalAlignment.Center;
-                btDelete.VerticalAlignment = VerticalAlignment.Center;
-                btDelete.Click += (sender, eventArg) =>
-                {
-                    dbms.deleteActivity(activity.Id);
-                    ActivityManagement_Page actmpage = new ActivityManagement_Page(userID);
-                    actmpage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                    actmpage.Show();
-                    this.Close();
-                };
 
 
                 Grid.SetRow(activityPhoto, showActivity.RowDefinitions.Count);
@@ -203,9 +194,6 @@ namespace Ensemble
                 Grid.SetRow(lSponsor, showActivity.RowDefinitions.Count);
                 Grid.SetColumn(lSponsor, 1);
 
-                Grid.SetRow(btDelete, showActivity.RowDefinitions.Count);
-                Grid.SetColumn(btDelete, 2);
-               
 
                 RowDefinition r5 = new RowDefinition();
                 r5.Height = new GridLength(30);
@@ -220,7 +208,6 @@ namespace Ensemble
                 showActivity.Children.Add(lLocation);
                 showActivity.Children.Add(lMoney);
                 showActivity.Children.Add(lSponsor);
-                showActivity.Children.Add(btDelete);
                 showActivity.Children.Add(activityPhoto);
             }
 

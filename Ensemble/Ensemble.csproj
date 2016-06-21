@@ -84,6 +84,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ShowFriendInfo.xaml.cs">
+      <DependentUpon>ShowFriendInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShowFriendsActivities.xaml.cs">
+      <DependentUpon>ShowFriendsActivities.xaml</DependentUpon>
+    </Compile>
     <Compile Include="showUserInfo.xaml.cs">
       <DependentUpon>showUserInfo.xaml</DependentUpon>
     </Compile>
@@ -123,6 +129,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ShowFriendInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowFriendsActivities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="showUserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
