@@ -23,8 +23,12 @@ namespace Ensemble
 
         DBManagerService dbms = new DBManagerService();
 
+ 
+
         public FirstPage(int uid)
         {
+
+
             InitializeComponent();
             userID = uid;
             string imageURI = dbms.getUserImage(userID);
@@ -70,10 +74,9 @@ namespace Ensemble
                 {
                     Image image1 = new Image();
 
-
                     ImageSource imageSource2 = new BitmapImage(new Uri(u.photoURL));
                     image1.Source = imageSource2;
-                    image1.Margin = new Thickness(10, 10, 10, 10);
+                    image1.Margin = new Thickness(10, 0, 10, 10);
 
                     Label l1 = new Label();
                     l1.FontSize = 14;
@@ -119,6 +122,30 @@ namespace Ensemble
             }
 
         }
+
+        private void load_city(object sender, RoutedEventArgs e)
+        {
+            List<string> cities = new List<string>();
+            cities.Add("City");
+            cities.AddRange(dbms.getAllCities());
+            
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = cities;
+            comboBox.SelectedIndex = 0;
+            comboBox.Background = Brushes.YellowGreen;
+        }
+
+        private void load_tag(object sender, RoutedEventArgs e)
+        {
+            List<string> tags = new List<string>();
+            tags.Add("Tag");
+            tags.AddRange(dbms.getAllTags());
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = tags;
+            comboBox.SelectedIndex = 0;
+
+        }
+
 
         private void loadActivities(List<Activity> activities)
         {
@@ -182,7 +209,7 @@ namespace Ensemble
 
                     Label lTime = new Label();
                     lTime.FontSize = 14;
-                    lTime.Content = "Date: " + a.start_date + " Start at:" + a.start_time + " End at:" + a.end_time;
+                    lTime.Content = "Date: " + a.start_date.ToString("dd-MM-yyyy") + " Start at:" + a.start_time + " End at:" + a.end_time;
                     lTime.HorizontalAlignment = HorizontalAlignment.Left;
                     lTime.VerticalAlignment = VerticalAlignment.Center;
                     lTime.Margin = new Thickness(0, 0, 0, 0);
@@ -212,6 +239,9 @@ namespace Ensemble
 
                     Button btLike = new Button();
                     btLike.Content = "Like";
+                    btLike.Width = 25;
+                    btLike.Background = Brushes.LightPink;
+                    btLike.Foreground = Brushes.White;
                     btLike.HorizontalAlignment = HorizontalAlignment.Center;
                     btLike.VerticalAlignment = VerticalAlignment.Center;
                     //check if the current activity is liked or not
@@ -230,6 +260,9 @@ namespace Ensemble
 
                     Button btJoin = new Button();
                     btJoin.Content = "Join";
+                    btJoin.Width = 25;
+                    btJoin.Background = Brushes.LightBlue;
+                    btJoin.Foreground = Brushes.White;
                     btJoin.HorizontalAlignment = HorizontalAlignment.Center;
                     btJoin.VerticalAlignment = VerticalAlignment.Center;
                     //check if the current activity is joined or not

@@ -76,12 +76,12 @@
                             <ColumnDefinition Width="300" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="My Activities" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFFB9B6D" Margin="50,0,0,0" />
+                        <TextBlock Text="Joined Activities" FontFamily="Showcard Gothic" FontSize="36" Foreground="#FFFB9B6D" Margin="50,0,263,0" Grid.ColumnSpan="2" />
                     </Grid>
                 </Border>
                 <ScrollViewer>
                     <Border  BorderBrush="Black" Width="650"  >
-                        <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
+                        <Grid x:Name="showActivity" Margin="0,0,0,0">
 
                         </Grid>
                     </Border>

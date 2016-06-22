@@ -80,7 +80,7 @@ namespace Ensemble
 
 
 
-            List<Activity> activities = dbms.getMyActivities(fid);
+            List<Activity> activities = dbms.getMyJoinedActivities(fid);
 
             foreach (Activity activity in activities)
             {

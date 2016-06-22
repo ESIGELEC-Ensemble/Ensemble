@@ -68,7 +68,7 @@
         <!--left area-->
         <Border Width="200"  BorderThickness="1" DockPanel.Dock="Left">
             <ScrollViewer>
-                <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,9,0">
+                <Grid x:Name="showFriends"  Margin="0,57,9,0">
                 </Grid>
             </ScrollViewer>
         </Border>
@@ -85,15 +85,15 @@
                 </Grid.RowDefinitions>
 
                 <Border  Grid.Row="0" Margin="0,0,0,0" Grid.RowSpan="2" >
-                    <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True"    />
+                    <Grid x:Name="showActivity" Margin="0,0,0,0"     />
                 </Border>
 
                 <Border Margin="0,0,0,0"   Grid.Row="1"  >
-                    <Grid x:Name="introduction" Width="650" ShowGridLines="True" DockPanel.Dock="Bottom" Margin="21,10,21,0" />
+                    <Grid x:Name="introduction" Width="650" DockPanel.Dock="Bottom" Margin="21,10,21,0" />
                 </Border>
 
-                <Border BorderBrush="Green" BorderThickness="1" Grid.Row="2" Margin="10,0,20,10" >
-                    <Grid x:Name="commentBox"  ShowGridLines="True" Width="670" Margin="0,0,-10,9" >
+                <Border BorderBrush="Green"  Grid.Row="2" Margin="10,0,20,10" >
+                    <Grid x:Name="commentBox"  Width="670" Margin="0,0,-10,9" >
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -113,7 +113,7 @@
 
                 <Border Grid.Row="3">
                     <ScrollViewer>
-                        <Grid x:Name="comment"  ShowGridLines="True" Width="650"  >
+                        <Grid x:Name="comment"   Width="650"  >
                         </Grid>
                     </ScrollViewer>
                 </Border>

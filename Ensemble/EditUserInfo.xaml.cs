@@ -119,6 +119,7 @@ namespace Ensemble
             }
 
             FirstPage firstPage = new FirstPage(userID);
+            firstPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             firstPage.Show();
             this.Close();
 

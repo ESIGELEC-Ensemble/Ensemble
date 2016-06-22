@@ -1025,7 +1025,7 @@ namespace DatabaseService
                     string picURL = reader.GetString("picURL");
                     act = new Activity(actID, name, act_date, actStartTime, actEndTime, budget, intro, creatUID, city, location, picURL, tag);
                 }
-            }
+        }
             this.disConnect(conn);
             return act;
         }
@@ -1255,7 +1255,6 @@ namespace DatabaseService
             this.disConnect(conn);
             return users;
         }
-
 
         public User getUserObject(int t_id, string t_email, string t_name, string t_password, string t_photoURL)
         {

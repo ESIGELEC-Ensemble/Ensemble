@@ -229,6 +229,7 @@ namespace Ensemble
         private void btCreate_Click(object sender, RoutedEventArgs e)
         {
             CreateActivity createPage = new CreateActivity(userID);
+            createPage.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             createPage.Show();
             this.Close();
         }

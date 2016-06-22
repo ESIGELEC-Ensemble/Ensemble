@@ -83,7 +83,7 @@
                 </Border>
                 <ScrollViewer>
                     <Border  BorderBrush="Black" Width="650"  >
-                        <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
+                        <Grid x:Name="showActivity" Margin="0,0,0,0" >
 
                         </Grid>
                     </Border>

@@ -151,7 +151,7 @@ namespace Ensemble
 
             Label lTime = new Label();
             lTime.FontSize = 14;
-            lTime.Content = "Time: " + activity.start_date;
+            lTime.Content = "Time: " + activity.start_date.ToString("dd-MM-yyyy");
             lTime.HorizontalAlignment = HorizontalAlignment.Left;
             lTime.VerticalAlignment = VerticalAlignment.Center;
             lTime.Margin = new Thickness(0, 0, 0, 0);
@@ -188,7 +188,7 @@ namespace Ensemble
             int numJoin = dbms.getTotalJoinByAID(this.actID);
             Label lJoinNum = new Label();
             lJoinNum.FontSize = 13;
-            lJoinNum.Content = "Total Like: " + numJoin;
+            lJoinNum.Content = "Total Join: " + numJoin;
             lJoinNum.HorizontalAlignment = HorizontalAlignment.Left;
             lJoinNum.VerticalAlignment = VerticalAlignment.Center;
             lJoinNum.Margin = new Thickness(0, 0, 0, 0);
@@ -198,6 +198,7 @@ namespace Ensemble
             lIntroTitle.Content = "Introduction:";
             lIntroTitle.HorizontalAlignment = HorizontalAlignment.Right;
             lIntroTitle.VerticalAlignment = VerticalAlignment.Top;
+            lIntroTitle.BorderThickness = new Thickness(0);
             lIntroTitle.Margin = new Thickness(0, 0, 0, 0);
 
             TextBox lIntroduction = new TextBox();
@@ -217,6 +218,8 @@ namespace Ensemble
 
             Button btLike = new Button();
             btLike.Content = "Like";
+            btLike.Background = Brushes.LightPink;
+            btLike.Foreground = Brushes.White;
             btLike.HorizontalAlignment = HorizontalAlignment.Center;
             btLike.VerticalAlignment = VerticalAlignment.Center;
             //check if the current activity is liked or not
@@ -235,6 +238,8 @@ namespace Ensemble
 
             Button btJoin = new Button();
             btJoin.Content = "Join";
+            btJoin.Background = Brushes.LightPink;
+            btJoin.Foreground = Brushes.White;
             btJoin.HorizontalAlignment = HorizontalAlignment.Center;
             btJoin.VerticalAlignment = VerticalAlignment.Center;
             //check if the current activity is joined or not
@@ -343,13 +348,15 @@ namespace Ensemble
 
                 Label lCommentTitle = new Label();
                 lCommentTitle.FontSize = 14;
-                lCommentTitle.Content = " Comments:";
+                lCommentTitle.Content = " Comments: ";
                 lCommentTitle.HorizontalAlignment = HorizontalAlignment.Center;
                 lCommentTitle.VerticalAlignment = VerticalAlignment.Center;
                 lCommentTitle.Margin = new Thickness(0, 0, 0, 0);
 
+
+                string commenterImage = dbms.getUserImage(c.userID);
                 Image userCommentImage = new Image();
-                userCommentImage.Source = imageSource;
+                userCommentImage.Source = new BitmapImage(new Uri(commenterImage));
                 userCommentImage.Margin = new Thickness(0, 0, 0, 0);
                 userCommentImage.HorizontalAlignment = HorizontalAlignment.Center;
                 userCommentImage.VerticalAlignment = VerticalAlignment.Top;
@@ -359,14 +366,14 @@ namespace Ensemble
                 Label lCommentName = new Label();
                 String name = user.name;
                 lCommentName.FontSize = 13;
-                lCommentName.Content = name + " said:";
+                lCommentName.Content = name + " said: ";
                 lCommentName.HorizontalAlignment = HorizontalAlignment.Left;
                 lCommentName.VerticalAlignment = VerticalAlignment.Top;
                 lCommentName.Margin = new Thickness(0, 0, 0, 0);
 
                 Label lCommentTime = new Label();
                 lCommentTime.FontSize = 13;
-                lCommentTime.Content = "Time:" + c.commentDate;
+                lCommentTime.Content = "Time: " + c.commentDate.ToString("dd-mm-yyyy");
                 lCommentTime.HorizontalAlignment = HorizontalAlignment.Left;
                 lCommentTime.VerticalAlignment = VerticalAlignment.Top;
                 lCommentTime.Margin = new Thickness(0, 0, 0, 0);
@@ -420,6 +427,11 @@ namespace Ensemble
         {
             string commt = commentBT.Text;
             dbms.commentActivity(userID, actID, commt);
+            ActivityDetail actDetail = new ActivityDetail(userID, actID);
+            actDetail.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            actDetail.Show();
+            this.Close();
+
             
         }
 

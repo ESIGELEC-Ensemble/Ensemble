@@ -168,15 +168,22 @@ namespace Ensemble
 
         private void loadFriends(List<User> friends)
         {
-            
-            int index = 0;
             showInfo.Children.Clear();
             showInfo.ColumnDefinitions.Clear();
             showInfo.RowDefinitions.Clear();
-            showPicture.ColumnDefinitions.Clear();
-            showPicture.RowDefinitions.Clear();
-            showPicture.Children.Clear();
-            
+            showInfo.ColumnDefinitions.Clear();
+            showInfo.RowDefinitions.Clear();
+            showInfo.Children.Clear();
+
+            ColumnDefinition c1 = new ColumnDefinition();
+            c1.Width = new GridLength(130);
+            showInfo.ColumnDefinitions.Add(c1);
+
+            ColumnDefinition c2 = new ColumnDefinition();
+            c2.Width = new GridLength(360);
+            showInfo.ColumnDefinitions.Add(c2);
+
+
 
             foreach(User friend in friends)
             {
@@ -186,16 +193,6 @@ namespace Ensemble
                 image1.Source = imageSource2;
                 image1.Margin = new Thickness(10, 10, 10, 10);
 
-                Grid.SetRow(image1, index++);
-                Grid.SetColumn(image1, 0);
-
-                RowDefinition rowDef1 = new RowDefinition();
-                rowDef1.Height = new GridLength(90);
-                showPicture.RowDefinitions.Add(rowDef1);
-
-                showPicture.Children.Add(image1);
-
-
                 Label l1 = new Label();
                 l1.FontSize = 14;
                 l1.Content = "Name: " + friend.name;
@@ -203,8 +200,6 @@ namespace Ensemble
 
                 Label l2 = new Label();
                 l2.FontSize = 14;
-
-
 
                 Button b1 = new Button();
                 if (dbms.isFollowed(userID, friend.id))
@@ -238,27 +233,30 @@ namespace Ensemble
                     };
                 }
 
+                Grid.SetRow(image1, showInfo.RowDefinitions.Count);
+                Grid.SetRowSpan(image1, 3);
+                Grid.SetColumn(image1, 0);
 
                 Grid.SetRow(l1, showInfo.RowDefinitions.Count);
-                Grid.SetColumn(l1, 0);
+                Grid.SetColumn(l1, 1);
                 RowDefinition rowDef5 = new RowDefinition();
                 rowDef5.Height = new GridLength(30);
                 showInfo.RowDefinitions.Add(rowDef5);
 
                 Grid.SetRow(l2, showInfo.RowDefinitions.Count);
-                Grid.SetColumn(l2, 0);
+                Grid.SetColumn(l2, 1);
                 RowDefinition rowDef6 = new RowDefinition();
                 rowDef6.Height = new GridLength(30);
                 showInfo.RowDefinitions.Add(rowDef6);
 
                 Grid.SetRow(b1, showInfo.RowDefinitions.Count);
-                Grid.SetColumn(b1, 0);
+                Grid.SetColumn(b1, 1);
 
                 List<Activity> activities = dbms.getMyJoinedActivities(friend.id);
 
                 if (activities.Count >= 1)
                 {
-                    l2.Content = "Latest joined: " + activities[activities.Count - 1];
+                    l2.Content = "Latest joined: " + activities[activities.Count - 1].name;
                     Button btMore = new Button();
                     btMore.Content = "More joined activities";
                     btMore.Click += (s, e) =>
@@ -276,7 +274,7 @@ namespace Ensemble
                     btMore.Foreground = Brushes.White;
 
                     Grid.SetRow(btMore, showInfo.RowDefinitions.Count);
-                    Grid.SetColumn(btMore, 0);
+                    Grid.SetColumn(btMore, 1);
                     showInfo.Children.Add(btMore);
                 }
                 else
@@ -291,7 +289,7 @@ namespace Ensemble
                 showInfo.Children.Add(l1);
                 showInfo.Children.Add(l2);
                 showInfo.Children.Add(b1);
-                
+                showInfo.Children.Add(image1);
 
             }
 
@@ -317,9 +315,9 @@ namespace Ensemble
                     showInfo.RowDefinitions.Clear();
                     showInfo.ColumnDefinitions.Clear();
                     showInfo.Children.Clear();
-                    showPicture.ColumnDefinitions.Clear();
-                    showPicture.RowDefinitions.Clear();
-                    showPicture.Children.Clear();
+                    showInfo.ColumnDefinitions.Clear();
+                    showInfo.RowDefinitions.Clear();
+                    showInfo.Children.Clear();
                 }
             }
             else
@@ -327,9 +325,9 @@ namespace Ensemble
                 showInfo.RowDefinitions.Clear();
                 showInfo.ColumnDefinitions.Clear();
                 showInfo.Children.Clear();
-                showPicture.ColumnDefinitions.Clear();
-                showPicture.RowDefinitions.Clear();
-                showPicture.Children.Clear();
+                showInfo.ColumnDefinitions.Clear();
+                showInfo.RowDefinitions.Clear();
+                showInfo.Children.Clear();
             }
             
         }

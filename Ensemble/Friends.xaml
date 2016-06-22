@@ -80,20 +80,17 @@
         <Border  BorderThickness="1" DockPanel.Dock="Bottom">
             <DockPanel x:Name="show" LastChildFill="True"  Margin="0,0,0,0" >
                 <Border BorderBrush="Green" BorderThickness="1"  Margin="60,50,20,230" >
-                    <Grid x:Name="serachFriend" ShowGridLines="True" DockPanel.Dock="Left" Width="300" Height="265">
+                    <Grid x:Name="serachFriend" DockPanel.Dock="Left" Width="300" Height="265">
 
                     </Grid>
                 </Border>
-                
-                
-                <Grid x:Name="showPicture" ShowGridLines="True" DockPanel.Dock="Left" Width="200" Margin="0,20,0,0" >
-
-                </Grid>
-
-                <Grid x:Name="showInfo" ShowGridLines="True" DockPanel.Dock="Left" Margin="0,20,0,0" >
 
 
-                </Grid>
+                <ScrollViewer>
+                    <Grid x:Name="showInfo"  DockPanel.Dock="Left" Margin="0,20,0,0" >
+                       
+                    </Grid>
+                </ScrollViewer>
 
             </DockPanel>
         </Border>

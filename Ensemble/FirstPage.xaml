@@ -19,9 +19,13 @@
                 <ColumnDefinition Width="220" />
             </Grid.ColumnDefinitions>
 
-            <Label HorizontalAlignment="Left" Margin="50,0,0,10"  Foreground="White" FontSize="36" Content="Ensemble" FontFamily="Script MT Bold"/>
-            <ComboBox x:Name="city" Background="Yellow" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="33" FontSize="16" >
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
+            <Label HorizontalAlignment="Left" Margin="50,0,0,10"   FontSize="36" FontFamily="Script MT Bold">
+                <Hyperlink Click="Hyperlink_Click" Foreground="White" >
+                    Ensemble
+                </Hyperlink>
+            </Label>
+            <ComboBox x:Name="city" Background="YellowGreen" Grid.Column="1"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Height="33" FontSize="16" Loaded="load_city" >
+                <!--<ComboBoxItem Background="YellowGreen" Foreground="White" Content="City"  
                          FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Rouen"  
                          FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
@@ -32,11 +36,11 @@
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Le havre"  
                          FontFamily="Verdana" FontSize="12" FontWeight="Bold"></ComboBoxItem>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Shanghai"  
-                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
+                         FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>-->
             </ComboBox>
 
-            <ComboBox x:Name="Tag" Background="Yellow" Grid.Column="2"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Height="34" FontSize="16" >
-                <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Tag"  
+            <ComboBox x:Name="Tag" Background="Yellow" Grid.Column="2"   HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Height="34" FontSize="16" Loaded="load_tag">
+                <!--<ComboBoxItem Background="YellowGreen" Foreground="White" Content="Tag"  
                 		FontFamily="Georgia" FontSize="14" FontWeight="Bold" IsSelected="True"/>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Party"  
                 		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
@@ -47,7 +51,7 @@
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Sports"  
                 		FontFamily="Verdana" FontSize="12" FontWeight="Bold"/>
                 <ComboBoxItem Background="YellowGreen" Foreground="White" Content="Cook"  
-                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>
+                		FontFamily="Georgia" FontSize="14" FontWeight="Bold"/>-->
             </ComboBox>
 
             <TextBox Width="162"   Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchTermTextBox" Margin="10,10,0,18" Height="34"/>
@@ -106,28 +110,36 @@
 
         <!-- top 2 area-->
         <Border Height="54"  BorderBrush="Black"  DockPanel.Dock="Top">
-            <TextBlock HorizontalAlignment="Center" Margin="10,55,707,-80" TextWrapping="Wrap" Text="Follow people" Foreground="Orange" FontSize="24" FontFamily="Showcard Gothic"/>
-            <!--<Button x:Name="AsByTimeButton" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="75,-45,0,0" VerticalAlignment="Top" Width="142" Height="34" Click="ascendByTime" />
-            <Button x:Name="DsByTimeButton" Content="Descend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" Margin="202,-45,0,0" VerticalAlignment="Top" Width="142" Height="34" Grid.Column="1" Click="descendByTime" />-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="200" />             
+                </Grid.ColumnDefinitions>
 
+                <TextBlock HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0" TextWrapping="Wrap" Text="Follow people" Foreground="Orange" FontSize="23" FontFamily="Showcard Gothic"/>
+                <Button x:Name="AsByTimeButton" Grid.Column="1" Content="Ascend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="142" Height="30" Click="ascendByTime" />
+                <Button x:Name="DsByTimeButton" Grid.Column="2"  Content="Descend by time" Background="LightBlue"  Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Width="142" Height="30" Click="descendByTime" />
+
+            </Grid>
+           
         </Border>
 
         <!--left area-->
-        <Border Width="200"  BorderThickness="1" DockPanel.Dock="Left">
-            <ScrollViewer>
-                <Grid x:Name="showFriends" ShowGridLines="True" Margin="0,57,10,0">
-                </Grid>
+        <Border Width="180"  BorderThickness="1" DockPanel.Dock="Left" Height="475" VerticalAlignment="Bottom">
+            <ScrollViewer >
+                <Grid x:Name="showFriends" />
             </ScrollViewer>
         </Border>
 
 
         <!--right area-->
-        <Border Background="White" DockPanel.Dock="Right" Width="686">
+        <Border Background="White" DockPanel.Dock="Right" Width="686" Margin="0,19,0,0">
             <DockPanel Name="mydock" LastChildFill="True">
                
-                <Border  BorderBrush="Black" Width="686"  >
+                <Border  BorderBrush="Black" Width="686" Height="475" VerticalAlignment="Bottom"  >
                     <ScrollViewer Margin="0,0,0,0" HorizontalAlignment="Left" Width="686">
-                        <Grid x:Name="showActivity" Margin="0,0,0,0" ShowGridLines="True" >
+                        <Grid x:Name="showActivity" Margin="0,0,0,0"  >
 
                         </Grid>
                     </ScrollViewer>

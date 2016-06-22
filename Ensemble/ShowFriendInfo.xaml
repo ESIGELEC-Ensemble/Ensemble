@@ -66,7 +66,7 @@
 
             <!--bottom area-->
             <Border   BorderThickness="1" DockPanel.Dock="Bottom">
-                <Grid ShowGridLines="True" Height="467" >
+                <Grid Height="467" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200" />
